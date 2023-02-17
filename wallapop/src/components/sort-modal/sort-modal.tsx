@@ -17,7 +17,7 @@ export const SortModal: React.FC<SortModalProps> = ({ setCategory, show, onClose
             <Wrapper onClick={e => e.stopPropagation()}>
                 <Title>Sort by:</Title>
                 {sortCriteria.map((criteria, index) => 
-                    <CategoryButton onClick={() => setCategory(criteria)} isLastCategory={index === 3} key={`${criteria}-${index}`}>
+                    <CategoryButton onClick={() => setCategory(criteria.toLowerCase())} isLastCategory={index === 3} key={`${criteria}-${index}`}>
                         {criteria}
                     </CategoryButton>
                     )

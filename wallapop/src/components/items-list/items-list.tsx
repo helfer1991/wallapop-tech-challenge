@@ -50,13 +50,21 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items, addToFavourites }) 
   }
 
   useEffect(() => {
-    const filteredItems = items.filter(item => item.title.toLowerCase().includes(searchInput.toLowerCase()));
+    let filteredItems = [];
+
+    if(searchTerm === 'title') {
+      filteredItems = items.filter(item => item.title.toLowerCase().includes(searchInput.toLowerCase()));
+    } else if(searchTerm === 'description') {
+      filteredItems = items.filter(item => item.description.toLowerCase().includes(searchInput.toLowerCase()));
+    } else if(searchTerm === 'price') {
+      filteredItems = items.filter(item => item.price.toLowerCase().includes(searchInput.toLowerCase()));
+    }
+    else {
+      filteredItems = items.filter(item => item.email.toLowerCase().includes(searchInput.toLowerCase()));
+    }
     searchInput === '' ? setSortedArray([...items]) : setSortedArray(filteredItems);
     setIsVisible(5);
 }, [searchInput, items]);
-
-  console.log(sortedArray.length);
-  console.log(searchTerm);
 
   return (
     <Container>

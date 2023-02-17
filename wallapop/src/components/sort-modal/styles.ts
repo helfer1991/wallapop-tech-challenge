@@ -34,12 +34,12 @@ export const CategoryButtonContainer = styled.div`
     flex-direction: column;
 `;
 
-export const CategoryButton = styled.button<OptionalMarginBottom>`
+export const CategoryButton = styled.ul<OptionalMarginBottom>`
     display: block;
     background-color: transparent;
-    border: 0;
+    border-top: 1px solid rgba(0,0,0,.15);
     color: #212529;
     font-size: 1rem;
-    padding: 0;
-    margin-bottom: ${(props) => props.isLastCategory ? '0' : '16px'};
+    margin-bottom: 0;
+    padding: 12px 0 0 0;
 `;

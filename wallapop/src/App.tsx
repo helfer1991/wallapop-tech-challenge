@@ -41,9 +41,6 @@ function App() {
     setFavourites(prevFavourites => ([...prevFavourites, item]));
   }
 
-  console.log(favourites);
-  console.log(items);
-
   return (
     <div className="App">
       <Header favourites={favourites} />
