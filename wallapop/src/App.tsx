@@ -34,7 +34,7 @@ function App() {
   }, []);
 
   if(loading) {
-    return <p>loading</p>
+    return <p>loading...</p>
   }
 
   const addToFavourites = (item: Item) => {
