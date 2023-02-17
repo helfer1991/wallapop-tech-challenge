@@ -3,7 +3,7 @@ import React from 'react';
 import { Container, Wrapper, Title, CategoryButton } from './styles';
 
 type SortModalProps = {
-    setCategory?: (event: string) => React.Dispatch<React.SetStateAction<string>>;
+    setCategory: React.Dispatch<React.SetStateAction<string>>;
     show: boolean;
     onClose: (event: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => void;
 }
@@ -16,7 +16,12 @@ export const SortModal: React.FC<SortModalProps> = ({ setCategory, show, onClose
         <Container onClick={onClose}>
             <Wrapper onClick={e => e.stopPropagation()}>
                 <Title>Sort by:</Title>
-                {/*sortCriteria.map((criteria, index) => <CategoryButton onClick={() => setCategory(criteria)} isLastCategory={index === 3} key={`${criteria}-${index}`}>{criteria}</CategoryButton>)*/}
+                {sortCriteria.map((criteria, index) => 
+                    <CategoryButton onClick={() => setCategory(criteria)} isLastCategory={index === 3} key={`${criteria}-${index}`}>
+                        {criteria}
+                    </CategoryButton>
+                    )
+                }
             </Wrapper>
         </Container>
         : null

@@ -5,7 +5,11 @@ import { Container, Logo, FavouritesButton } from "./styles";
 
 import type { Item } from "../items-list/items-list";
 
-export const Header: React.FC<{ favourites: Array<Item> }> = ({ favourites }) => {
+type FavouritesProps = {
+    favourites: Array<Item>;
+}
+
+export const Header: React.FC<FavouritesProps> = ({ favourites }) => {
     const [show, setShow] = useState<boolean>(false);
 
     return (

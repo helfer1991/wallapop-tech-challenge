@@ -8,19 +8,34 @@ export const Container = styled.div`
     width: 90%;
 `;
 
+export const SearchWrapper = styled.div`
+    display: flex;
+    gap: 8px;
+`;
+
+export const SearchTitleButton = styled.button`
+    align-self: self-start;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0 0 24px 0;
+    background-color: transparent;
+    border: 0;
+`;
+
+export const SearchtButtonText = styled.p`
+    display: inline-block;
+    margin: 0 0 0 4px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #13c1ac;
+`;
+
 export const SortButton = styled.button`
     align-self: self-start;
     background-color: transparent;
     border: 0;
     color: #000;
     font-size: 14px;
-`;
-
-export const SortButtonText = styled.p`
-    display: inline-block;
-    margin: 0 0 0 4px;
-    font-size: 14px;
-    color: #13c1ac;
 `;
 
 export const FilterButtonWrapper = styled.span`
