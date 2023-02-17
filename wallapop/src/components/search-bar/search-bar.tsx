@@ -6,7 +6,7 @@ import { debounce } from "lodash";
 
 type SearchBarProps = {
     searchCategory?: string;
-    setSearchResult?: React.Dispatch<React.SetStateAction<string>>;
+    setSearchResult: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({ searchCategory, setSearchResult }) => {
@@ -28,7 +28,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ searchCategory, setSearchR
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        //setSearchResult(searchInput);
+        setSearchResult(searchInput);
     }
 
     return (

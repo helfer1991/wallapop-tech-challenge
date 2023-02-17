@@ -52,7 +52,7 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items, addToFavourites }) 
   return (
     <Container>
       <p>Search by:</p>
-      <SearchBar searchCategory={searchTerm} setSearchResult={setSearchInput} />
+      {/*<SearchBar searchCategory={searchTerm} setSearchResult={setSearchInput} />*/}
       <FilterButtonWrapper>
         {sortCriteria.map(criteria => <FilterButton key={`button-${criteria}`}onClick={() => sort(criteria)}>{criteria}</FilterButton>)}
       </FilterButtonWrapper>

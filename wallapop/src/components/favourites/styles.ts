@@ -15,7 +15,7 @@ export const Container = styled.div`
 export const Wrapper = styled.div`
     background-color: #fff;
     border-radius: 8px;
-    padding: 12px;
+    padding: 24px 12px;
     width: 500px;
     height: 400px;
     overflow-y: auto;
