@@ -15,6 +15,7 @@ export type Item = {
 function App() {
   const [items, setItems] = useState<Array<Item>>([]);
   const [loading, setLoading] = useState<boolean>(true);
+  const [favourites, setFavourites] = useState<Array<Item>>([]);
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -36,10 +37,17 @@ function App() {
     return <p>loading</p>
   }
 
+  const addToFavourites = (item: Item) => {
+    setFavourites(prevFavourites => ([...prevFavourites, item]));
+  }
+
+  console.log(favourites);
+  console.log(items);
+
   return (
     <div className="App">
-      <Header />
-      <ItemsList items={items} />
+      <Header favourites={favourites} />
+      <ItemsList items={items} addToFavourites={addToFavourites} />
     </div>
   );
 }

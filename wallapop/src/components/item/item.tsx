@@ -6,10 +6,10 @@ import type { Item as ItemType } from '../items-list/items-list';
 type ItemProps = {
     item: {
         title: string;
-        description?: string;
+        description: string;
         price: string;
-        email?: string;
-        image?: string;
+        email: string;
+        image: string;
     },
     addToFavourites: (item: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => void;
 }

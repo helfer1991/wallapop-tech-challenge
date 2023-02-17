@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 
 import { Favourites } from "../favourites";
-import { Container, FavouritesButton } from "./styles";
+import { Container, Logo, FavouritesButton } from "./styles";
 
-export const Header: React.FC = () => {
+import type { Item } from "../items-list/items-list";
+
+export const Header: React.FC<{ favourites: Array<Item> }> = ({ favourites }) => {
     const [show, setShow] = useState<boolean>(false);
 
     return (
         <Container>
-            <p>logo</p>
+            <Logo src="https://mir-s3-cdn-cf.behance.net/projects/404/a009a0150534249.Y3JvcCw4MDgsNjMyLDAsMA.png" loading="lazy" />
             <FavouritesButton onClick={() => setShow(!show)}>Favourites</FavouritesButton>
-            <Favourites show={show} onClose={() => setShow(false)} />
+            <Favourites show={show} onClose={() => setShow(false)} items={favourites} />
         </Container>
     )
 }

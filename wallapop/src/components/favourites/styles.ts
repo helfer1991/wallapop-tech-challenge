@@ -17,4 +17,6 @@ export const Wrapper = styled.div`
     border-radius: 8px;
     padding: 12px;
     width: 500px;
+    height: 400px;
+    overflow-y: auto;
 `;

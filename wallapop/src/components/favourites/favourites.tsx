@@ -2,7 +2,11 @@ import React, { useState } from 'react';
 
 import type { Item } from '../items-list/items-list'
 
+import { SearchBar } from '../search-bar';
+
 import { Container, Wrapper } from './styles';
+
+import { ItemModal } from './item-modal';
 
 type FavouritesProps = {
     items?: Array<Item>;
@@ -15,7 +19,8 @@ export const Favourites: React.FC<FavouritesProps> = ({ items, show, onClose }) 
         show ?
         <Container onClick={onClose}>
             <Wrapper onClick={e => e.stopPropagation()}>
-                <p>cenas</p>
+                <SearchBar searchCategory="title" />
+                {items && items.map((item) => <ItemModal title={item.title} image={item.image} />)}
             </Wrapper>
         </Container>
         : null

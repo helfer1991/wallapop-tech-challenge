@@ -13,6 +13,11 @@ export const Container = styled.header`
     margin-bottom: 48px;
 `;
 
+export const Logo = styled.img`
+    height: 10vh;
+    width: 15vh;
+`;
+
 export const FavouritesButton = styled.button`
     background-color: transparent;
     border: 0;
