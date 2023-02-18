@@ -1,53 +1,40 @@
-import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
+import { FavouritesContextProvider } from '../../../context/FavouritesContext';
 import { Item } from '../item';
 
-const item = {
+const testItem = {
   title: 'Test Item',
-  description: 'This is a test item',
-  image: 'test-image.jpg',
-  price: '10.00',
+  description: 'A test item',
+  price: '9',
   email: 'test@example.com',
+  image: 'https://example.com/test-image.jpg'
 };
 
 describe('Item', () => {
-  it('renders the item details correctly', () => {
-    const { getByAltText, getByText } = render(<Item item={item} addToFavourites={() => {}} />);
+  it('should render the item details', () => {
+    const { getByText, getByAltText } = render(
+      <FavouritesContextProvider>
+        <Item item={testItem} />
+      </FavouritesContextProvider>
+    );
 
+    expect(getByText(testItem.title)).toBeInTheDocument();
+    expect(getByText(testItem.description)).toBeInTheDocument();
+    expect(getByText('9€')).toBeInTheDocument();
+    expect(getByText(testItem.email)).toBeInTheDocument();
     expect(getByAltText('item-image')).toBeInTheDocument();
-    expect(getByText(item.title)).toBeInTheDocument();
-    expect(getByText(item.description)).toBeInTheDocument();
-    expect(getByText(`${parseInt(item.price).toLocaleString('de-DE')}€`)).toBeInTheDocument();
-    expect(getByText(item.email)).toBeInTheDocument();
   });
 
-  it('calls addToFavourites and updates isFavourite when the favourite button is clicked', () => {
-    const addToFavourites = jest.fn();
-    const { getByTestId } = render(<Item item={item} addToFavourites={addToFavourites} />);
+  it('should add item to favourites', () => {
+    const { getByTestId } = render(
+      <FavouritesContextProvider>
+        <Item item={testItem} />
+      </FavouritesContextProvider>
+    );
 
-    const favouriteButton = getByTestId('button');
-    expect(favouriteButton).toBeInTheDocument();
-    expect(favouriteButton).not.toBeDisabled();
+    const button = getByTestId('add-to-favourites-button');
 
-    fireEvent.click(favouriteButton);
-
-    expect(addToFavourites).toHaveBeenCalledTimes(1);
-    expect(addToFavourites).toHaveBeenCalledWith(expect.any(Object)); // Make sure the event object is passed to the callback
-
-    expect(favouriteButton).toBeDisabled();
-    expect(getByTestId('button')).toBeInTheDocument();
-  });
-
-  it('disables the favourite button when isFavourite is true', () => {
-    const { getByTestId, rerender } = render(<Item item={item} addToFavourites={() => {}} />);
-    const favouriteButton = getByTestId('button');
-
-    expect(favouriteButton).not.toBeDisabled();
-
-    // Click the favourite button to set isFavourite to true
-    fireEvent.click(favouriteButton);
-    rerender(<Item item={item} addToFavourites={() => {}} />);
-
-    expect(favouriteButton).toBeDisabled();
+    fireEvent.click(button);
+    expect(button).toHaveAttribute('disabled');
   });
 });

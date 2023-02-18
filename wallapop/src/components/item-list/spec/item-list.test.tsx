@@ -69,7 +69,7 @@ describe("ItemList component", () => {
 
   describe('ItemList component with less than 5 items', () => {
     beforeEach(() => {
-        render(<ItemList items={mockItems} addToFavourites={addToFavourites} />);
+        render(<ItemList items={mockItems} />);
     })
 
     it("renders a list of only the first five (or less) items", () => {
@@ -89,7 +89,7 @@ describe("ItemList component", () => {
 
   describe('ItemList component with more than 5 items', () => {
     beforeEach(() => {
-        render(<ItemList items={mockItemsMoreThan5} addToFavourites={addToFavourites} />);
+        render(<ItemList items={mockItemsMoreThan5} />);
     })
 
     it("renders a list of items with a 'Load more' button", () => {

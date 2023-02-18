@@ -33,7 +33,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({ searchCategory, setSearchR
 
     return (
         <form onSubmit={handleSubmit}>
-            <Search onChange={handleChange} type="search" name="search" aria-expanded="false" placeholder={`Search by ${searchCategory}`} value={searchInput} />
+            <Search data-testid="searchbox" onChange={handleChange} type="search" name="search" aria-expanded="false" placeholder={`Search by ${searchCategory}`} value={searchInput} />
         </form>
     )
 }

@@ -18,12 +18,11 @@ export type Item = {
 
 type ItemsListProps = {
   items: Array<Item>;
-  addToFavourites: (item: Item) => void;
 }
 
 const sortCriteria = ['Title', 'Description', 'Price', 'Email'];
 
-export const ItemsList: React.FC<ItemsListProps> = ({ items, addToFavourites }) => {
+export const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
   const [showSortModal, setShowSortModal] = useState<boolean>(false);
   const [sortedArray, setSortedArray] = useState<Array<Item>>(items);
   const [searchTerm, setSearchTerm] = useState<string>('title');
@@ -44,7 +43,7 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items, addToFavourites }) 
       filteredItems = items.filter(item => item.email.toLowerCase().includes(searchInput.toLowerCase()));
     }
     searchInput === '' ? setSortedArray([...items]) : setSortedArray(filteredItems);
-  }, [searchInput, items]);
+  }, [searchInput]);
 
   useEffect(() => {
     if(filterCategory === 'title') {
@@ -58,7 +57,7 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items, addToFavourites }) 
       setSortedArray([...sortedArray].sort((a, b) => a.email.toLowerCase() > b.email.toLowerCase() ? 1 : -1));
     }
     setFilterCategory(filterCategory);
-  }, [filterCategory, items]);
+  }, [filterCategory]);
 
   return (
     <Container>
@@ -78,7 +77,7 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items, addToFavourites }) 
         {showSortModal ? <IoIosArrowUp /> : <IoIosArrowDown />}
       </SortButton>
       <SortModal setCategory={setFilterCategory} show={showSortModal} onClose={() => setShowSortModal(false)} />
-      <ItemList items={sortedArray} addToFavourites={addToFavourites} />
+      <ItemList items={sortedArray} />
     </Container>
   );
 };

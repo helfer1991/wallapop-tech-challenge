@@ -1,33 +1,48 @@
-import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { ItemModal } from '../item-modal';
+import React from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { FavouritesContext, FavouritesContextType } from "../../../../context/FavouritesContext";
+import { ItemModal } from "../item-modal";
 
 const mockItem = {
-    title: 'Test Item',
-    description: 'This is a test item',
-    image: 'test-image.jpg',
-    price: '10.00',
-    email: 'test@example.com',
+  title: "Test Item",
+  description: "Test Item Description",
+  price: "99.99",
+  email: "test@example.com",
+  image: "https://example.com/image.png",
+};
+
+describe("ItemModal", () => {
+  const mockContext: FavouritesContextType = {
+    favourites: [mockItem],
+    addToFavourites: jest.fn(),
+    removeFromFavourites: jest.fn(),
+    isItemFavourite: jest.fn(),
   };
 
-describe('ItemModal', () => {
-  const removeFromFavourites = jest.fn();
-
-  it('renders the title and image', () => {
-    const { getByText, getByAltText } = render(
-      <ItemModal item={mockItem} removeFromFavourites={removeFromFavourites} />
+  it("should render the correct title and image", () => {
+    render(
+      <FavouritesContext.Provider value={mockContext}>
+        <ItemModal item={mockItem} />
+      </FavouritesContext.Provider>
     );
-    expect(getByText(mockItem.title)).toBeInTheDocument();
-    expect(getByAltText('favourite-item-image')).toHaveAttribute('src', mockItem.image);
+
+    expect(screen.getByText(mockItem.title)).toBeInTheDocument();
+    expect(screen.getByAltText("favourite-item-image")).toHaveAttribute(
+      "src",
+      mockItem.image
+    );
   });
 
-  it('calls the removeFromFavourites function when the "Remove :(" button is clicked', () => {
-    const { getByText } = render(
-      <ItemModal item={mockItem} removeFromFavourites={removeFromFavourites} />
+  it("should call removeFromFavourites when remove button is clicked", () => {
+    render(
+      <FavouritesContext.Provider value={mockContext}>
+        <ItemModal item={mockItem} />
+      </FavouritesContext.Provider>
     );
-    const removeButton = getByText('Remove :(');
+
+    const removeButton = screen.getByText("Remove :(");
     fireEvent.click(removeButton);
-    expect(removeFromFavourites).toHaveBeenCalledTimes(1);
-    expect(removeFromFavourites).toHaveBeenCalledWith(mockItem);
+
+    expect(mockContext.removeFromFavourites).toHaveBeenCalledWith(mockItem);
   });
 });

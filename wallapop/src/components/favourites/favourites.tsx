@@ -1,35 +1,33 @@
 import React, { useState, useEffect } from 'react';
 
+import { SearchBar } from '../search-bar';
+import { Container, Wrapper } from './styles';
+import { ItemModal } from './item-modal';
+import { useFavourites } from '../../hooks/useFavourites';
+
 import type { Item } from '../items-list/items-list'
 
-import { SearchBar } from '../search-bar';
-
-import { Container, Wrapper } from './styles';
-
-import { ItemModal } from './item-modal';
-
 type FavouritesProps = {
-    items: Array<Item>;
     show: boolean;
     onClose: (event: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => void;
-    removeFromFavourites: (item: Item) => void;
 }
 
-export const Favourites: React.FC<FavouritesProps> = ({ items, show, onClose, removeFromFavourites }) => {
-    const [sortedItems, setSortedItems] = useState<Array<Item>>(items);
+export const Favourites: React.FC<FavouritesProps> = ({ show, onClose }) => {
+    const { favourites } = useFavourites();
+    const [sortedItems, setSortedItems] = useState<Array<Item>>(favourites);
     const [searchInput, setSearchInput] = useState<string>('');
 
     useEffect(() => {
-        const filteredItems = items.filter(item => item.title.toLowerCase().includes(searchInput.toLowerCase()));
-        searchInput === '' ? setSortedItems([...items]) : setSortedItems(filteredItems);
-    }, [searchInput, items]);
+        const filteredItems = favourites.filter(favourite => favourite.title.toLowerCase().includes(searchInput.toLowerCase()));
+        searchInput === '' ? setSortedItems([...favourites]) : setSortedItems(filteredItems);
+    }, [searchInput, favourites]);
     
     return (
         show ?
         <Container onClick={onClose}>
             <Wrapper onClick={e => e.stopPropagation()}>
                 <SearchBar searchCategory="title" setSearchResult={setSearchInput} />
-                {sortedItems && sortedItems.map((item, index) => <ItemModal key={`${item}-${index}`} item={item} removeFromFavourites={removeFromFavourites} />)}
+                {sortedItems && sortedItems.map((item, index) => <ItemModal key={`${item}-${index}`} item={item} />)}
             </Wrapper>
         </Container>
         : null

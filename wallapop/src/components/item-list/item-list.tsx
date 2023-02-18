@@ -14,10 +14,9 @@ export type Item = {
 
 type ItemListProps = {
   items: Array<Item>;
-  addToFavourites: (item: Item) => void;
 }
 
-export const ItemList: React.FC<ItemListProps> = ({ items, addToFavourites }) => {
+export const ItemList: React.FC<ItemListProps> = ({ items }) => {
   const [isVisible, setIsVisible] = useState<number>(5);
 
   const showMoreItems = useCallback(() => {
@@ -31,7 +30,7 @@ export const ItemList: React.FC<ItemListProps> = ({ items, addToFavourites }) =>
   return (
     <ItemsListContainer>
         {items && items.slice(0, isVisible).map((item, index) => (
-            <Item item={item} key={`${item.title}-${index}`} addToFavourites={() => addToFavourites(item)} />
+            <Item item={item} key={`${item.title}-${index}`} />
         ))}
         {items.length - isVisible !== 0 && items.length > 5 && <LoadMoreButton data-testid="load-more-button" onClick={showMoreItems}>Load more</LoadMoreButton>}
     </ItemsListContainer>

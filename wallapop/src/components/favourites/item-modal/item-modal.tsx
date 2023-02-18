@@ -1,14 +1,14 @@
 import React from "react";
-
+import { useFavourites } from "../../../hooks/useFavourites";
 import { Card, LeftWrapper, Title, Image, RemoveFavouriteButton } from './styles';
 import type { Item } from "../../item-list/item-list";
 
 type ItemModalProps = {
     item: Item
-    removeFromFavourites: (item: Item) => void;
 }
 
-export const ItemModal: React.FC<ItemModalProps> = ({ item, removeFromFavourites }) => {
+export const ItemModal: React.FC<ItemModalProps> = ({ item, }) => {
+    const { removeFromFavourites } = useFavourites();
 
     const handleRemove = () => {
         removeFromFavourites(item)
