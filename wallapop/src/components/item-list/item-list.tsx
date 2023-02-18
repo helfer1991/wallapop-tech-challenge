@@ -33,7 +33,7 @@ export const ItemList: React.FC<ItemListProps> = ({ items, addToFavourites }) =>
         {items && items.slice(0, isVisible).map((item, index) => (
             <Item item={item} key={`${item.title}-${index}`} addToFavourites={() => addToFavourites(item)} />
         ))}
-        {items.length - isVisible !== 0 && items.length > 5 && <LoadMoreButton onClick={showMoreItems}>Load more</LoadMoreButton>}
+        {items.length - isVisible !== 0 && items.length > 5 && <LoadMoreButton data-testid="load-more-button" onClick={showMoreItems}>Load more</LoadMoreButton>}
     </ItemsListContainer>
   );
 };
