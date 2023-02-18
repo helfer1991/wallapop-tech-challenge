@@ -12,9 +12,10 @@ type FavouritesProps = {
     items: Array<Item>;
     show: boolean;
     onClose: (event: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => void;
+    removeFromFavourites: (item: Item) => void;
 }
 
-export const Favourites: React.FC<FavouritesProps> = ({ items, show, onClose }) => {
+export const Favourites: React.FC<FavouritesProps> = ({ items, show, onClose, removeFromFavourites }) => {
     const [sortedItems, setSortedItems] = useState<Array<Item>>(items);
     const [searchInput, setSearchInput] = useState<string>('');
 
@@ -28,7 +29,7 @@ export const Favourites: React.FC<FavouritesProps> = ({ items, show, onClose }) 
         <Container onClick={onClose}>
             <Wrapper onClick={e => e.stopPropagation()}>
                 <SearchBar searchCategory="title" setSearchResult={setSearchInput} />
-                {sortedItems && sortedItems.map((item, index) => <ItemModal key={`${item}-${index}`} title={item.title} image={item.image} />)}
+                {sortedItems && sortedItems.map((item, index) => <ItemModal key={`${item}-${index}`} item={item} removeFromFavourites={removeFromFavourites} />)}
             </Wrapper>
         </Container>
         : null

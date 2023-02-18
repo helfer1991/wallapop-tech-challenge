@@ -41,9 +41,14 @@ function App() {
     setFavourites(prevFavourites => ([...prevFavourites, item]));
   }
 
+  const removeFromFavourites = (item: Item) => {
+    const index = favourites.indexOf(item);
+    setFavourites([...favourites].filter(favourite => favourite !== item));
+  }
+
   return (
     <div className="App">
-      <Header favourites={favourites} />
+      <Header favourites={favourites} removeFromFavourites={removeFromFavourites} />
       <ItemsList items={items} addToFavourites={addToFavourites} />
     </div>
   );

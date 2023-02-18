@@ -14,7 +14,7 @@ export const Item: React.FC<ItemProps> = ({ item, addToFavourites }) => {
     const handleFavouriteClick = (event: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
         addToFavourites(event);
         setIsFavourite(!isFavourite);
-      };
+    };
 
     return (
         <Card>
