@@ -12,18 +12,16 @@ type SearchBarProps = {
 export const SearchBar: React.FC<SearchBarProps> = ({ searchCategory, setSearchResult }) => {
     const [searchInput, setSearchInput] = useState<string>('');
 
-    const debounceHandleChange = useCallback((value: string) => {
-        console.log('cenas');
-    }, []);
+    const search = (value: string) => {
+        setSearchResult(value);
+    }
 
-    const cenas = useMemo(() => {
-        return debounce(debounceHandleChange, 500);
-    }, [debounceHandleChange])
+    const debouncedSearch = useMemo(() => debounce(search, 500), []);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.preventDefault()
-        setSearchInput(e.target.value);
-        cenas(e.target.value);
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        event.preventDefault()
+        setSearchInput(event.target.value);
+        debouncedSearch(event.target.value)
     }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
