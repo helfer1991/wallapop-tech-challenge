@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { ItemList, Item } from "../item-list";
+import { ItemList } from "../item-list";
 import { FavouritesContext } from '../../../context/FavouritesContext';
 
 

@@ -24,7 +24,7 @@ export const Favourites: React.FC<FavouritesProps> = ({ show, onClose }) => {
     
     return (
         show ?
-        <Container onClick={onClose}>
+        <Container onClick={onClose} data-testid="favourites-list">
             <Wrapper onClick={e => e.stopPropagation()}>
                 <SearchBar searchCategory="title" setSearchResult={setSearchInput} />
                 {sortedItems && sortedItems.map((item, index) => <ItemModal key={`${item}-${index}`} item={item} />)}
