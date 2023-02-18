@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Item } from "../item";
 
 import { SearchBar } from "../search-bar";
 import { SortModal } from "../sort-modal";
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 
+import { Container, SortButton, SortButtonText, SearchButtonWrapper, SearchButton } from "./styles";
 
-import { Container, ItemsListContainer, SortButton, SortButtonText, SearchButtonWrapper, SearchButton, LoadMoreButton } from "./styles";
+import { ItemList } from "../item-list";
 
 export type Item = {
     title: string;
@@ -24,19 +24,11 @@ type ItemsListProps = {
 const sortCriteria = ['Title', 'Description', 'Price', 'Email'];
 
 export const ItemsList: React.FC<ItemsListProps> = ({ items, addToFavourites }) => {
-  const [isVisible, setIsVisible] = useState<number>(5);
   const [showSortModal, setShowSortModal] = useState<boolean>(false);
   const [sortedArray, setSortedArray] = useState<Array<Item>>(items);
-  const [searchTerm, setSearchTerm] = useState<string>('title'); //pré-definir o search term como title?
+  const [searchTerm, setSearchTerm] = useState<string>('title');
   const [searchInput, setSearchInput] = useState<string>('');
   const [filterCategory, setFilterCategory] = useState<string>('title');
-
-  // é neste componente que vou alojar o state da categoria a fazer search. mas passo essa categoria como props para 
-  // search bar para mostrar no placeholder
-
-  const showMoreItems = () => {
-    setIsVisible((prevValue) => prevValue + 5);
-  }
 
   useEffect(() => {
     let filteredItems = [];
@@ -52,7 +44,6 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items, addToFavourites }) 
       filteredItems = items.filter(item => item.email.toLowerCase().includes(searchInput.toLowerCase()));
     }
     searchInput === '' ? setSortedArray([...items]) : setSortedArray(filteredItems);
-    setIsVisible(5);
   }, [searchInput, items]);
 
   useEffect(() => {
@@ -67,7 +58,7 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items, addToFavourites }) 
       setSortedArray([...sortedArray].sort((a, b) => a.email.toLowerCase() > b.email.toLowerCase() ? 1 : -1));
     }
     setFilterCategory(filterCategory);
-  }, [filterCategory]);
+  }, [filterCategory, items]);
 
   return (
     <Container>
@@ -87,12 +78,7 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items, addToFavourites }) 
         {showSortModal ? <IoIosArrowUp /> : <IoIosArrowDown />}
       </SortButton>
       <SortModal setCategory={setFilterCategory} show={showSortModal} onClose={() => setShowSortModal(false)} />
-      <ItemsListContainer>
-        {sortedArray && sortedArray.slice(0, isVisible).map((item, index) => (
-          <Item item={item} key={`${item.title}-${index}`} addToFavourites={() => addToFavourites(item)} />
-        ))}
-        {sortedArray.length - isVisible !== 0 && <LoadMoreButton onClick={showMoreItems}>Load more</LoadMoreButton>}
-      </ItemsListContainer>
+      <ItemList items={sortedArray} addToFavourites={addToFavourites} />
     </Container>
   );
 };

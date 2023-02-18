@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+
 export const Card = styled.article`
     border: 1px solid rgba(207, 216, 220, .5);
     border-radius: 8px;
@@ -21,6 +23,26 @@ export const Image = styled.img`
 export const Title = styled.h2`
     font-weight: 700;
     margin: 0 0 12px 0;
+`;
+
+export const FavouriteButton = styled.button`
+    margin: 0;
+    background-color: transparent;
+    border: 0;
+`;
+
+export const HeartEmpty = styled(AiOutlineHeart)`
+    display: block;
+    height: 24px;
+    padding-bottom: 8px;
+    width: 28px;
+`;
+
+export const HeartFull = styled(AiFillHeart)`
+    display: block;
+    height: 24px;
+    padding-bottom: 8px;
+    width: 28px;
 `;
 
 export const Description = styled.p`

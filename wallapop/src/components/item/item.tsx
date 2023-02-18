@@ -1,26 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Card, UpperWrapper, Image, Title, Description, Price, Email } from './styles';
+import { Card, UpperWrapper, Image, Title, FavouriteButton, HeartEmpty, HeartFull, Description, Price, Email } from './styles';
 import type { Item as ItemType } from '../items-list/items-list';
 
 type ItemProps = {
-    item: {
-        title: string;
-        description: string;
-        price: string;
-        email: string;
-        image: string;
-    },
+    item: ItemType;
     addToFavourites: (item: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => void;
 }
 
 export const Item: React.FC<ItemProps> = ({ item, addToFavourites }) => {
+    const [isFavourite, setIsFavourite] = useState<boolean>(false);
+
+    const handleFavouriteClick = (event: React.MouseEvent<HTMLDivElement | HTMLButtonElement>) => {
+        addToFavourites(event);
+        setIsFavourite(!isFavourite);
+      };
+
     return (
         <Card>
             <Image src={item.image} alt="item-image" loading="lazy" />
             <UpperWrapper>
                 <Title>{item.title}</Title>
-                <button onClick={addToFavourites}>add</button>
+                <FavouriteButton data-testid="button" onClick={handleFavouriteClick} disabled={isFavourite}>{isFavourite ? <HeartFull /> : <HeartEmpty />}</FavouriteButton>
             </UpperWrapper>
             <Description aria-label="Characteristics">{item.description}</Description>
             <Price>{parseInt(item.price).toLocaleString('de-DE')}€</Price>
