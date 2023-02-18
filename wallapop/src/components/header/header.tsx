@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import { Favourites } from "../favourites";
 import { Container, Logo, FavouritesButton } from "./styles";
 
-import type { Item } from "../items-list/items-list";
-
 export const Header: React.FC = () => {
     const [show, setShow] = useState<boolean>(false);
 

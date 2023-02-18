@@ -1,6 +1,8 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { ItemList, Item } from "../item-list";
+import { FavouritesContext } from '../../../context/FavouritesContext';
+
 
 const mockItems = [
     {
@@ -64,12 +66,44 @@ const mockItemsMoreThan5 = [
       },
 ]
 
-describe("ItemList component", () => {
-  const addToFavourites = jest.fn();
+const mockFavouritesContextValue = {
+  favourites: [
+    {
+      title: 'Item 1',
+      description: 'Description of Item 1',
+      price: '$10.00',
+      email: 'item1@example.com',
+      image: 'item1.png',
+    },
+    {
+      title: 'Item 2',
+      description: 'Description of Item 2',
+      price: '$20.00',
+      email: 'item2@example.com',
+      image: 'item2.png',
+    },
+    {
+      title: 'Item 3',
+      description: 'Description of Item 3',
+      price: '$30.00',
+      email: 'item3@example.com',
+      image: 'item3.png',
+    },
+  ],
+  addToFavourites: jest.fn(),
+  removeFromFavourites: jest.fn(),
+  isItemFavourite: jest.fn(),
+};
 
+describe("ItemList component", () => {
   describe('ItemList component with less than 5 items', () => {
     beforeEach(() => {
-        render(<ItemList items={mockItems} />);
+        render(
+          <ItemList items={mockItems} />,
+          {
+            wrapper: ({ children }) => <FavouritesContext.Provider value={mockFavouritesContextValue}>{children}</FavouritesContext.Provider>
+          }
+        );
     })
 
     it("renders a list of only the first five (or less) items", () => {
@@ -89,7 +123,12 @@ describe("ItemList component", () => {
 
   describe('ItemList component with more than 5 items', () => {
     beforeEach(() => {
-        render(<ItemList items={mockItemsMoreThan5} />);
+        render(
+          <ItemList items={mockItemsMoreThan5} />,
+          {
+            wrapper: ({ children }) => <FavouritesContext.Provider value={mockFavouritesContextValue}>{children}</FavouritesContext.Provider>
+          }
+          );
     })
 
     it("renders a list of items with a 'Load more' button", () => {
@@ -104,7 +143,6 @@ describe("ItemList component", () => {
         expect(item3Title).toBeInTheDocument();
         expect(item4Title).toBeInTheDocument();
         expect(item5Title).toBeInTheDocument();
-
     });
 
     it("does render the 'Load more' button", () => {
