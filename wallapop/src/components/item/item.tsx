@@ -26,7 +26,9 @@ export const Item: React.FC<ItemProps> = memo(({ item }) => {
             <Image src={item.image} alt="item-image" loading="lazy" />
             <UpperWrapper>
                 <Title>{item.title}</Title>
-                <FavouriteButton data-testid="add-to-favourites-button" onClick={handleFavouriteClick} disabled={isFavourite}>{isFavourite ? <HeartFull /> : <HeartEmpty />}</FavouriteButton>
+                <FavouriteButton data-testid="add-to-favourites-button" onClick={handleFavouriteClick} disabled={isFavourite}>
+                    {isFavourite ? <HeartFull data-testid="icon-heart-full" /> : <HeartEmpty data-testid="icon-heart-empty" />}
+                </FavouriteButton>
             </UpperWrapper>
             <Description aria-label="Characteristics">{item.description}</Description>
             <Price>{parseInt(item.price).toLocaleString('de-DE')}€</Price>

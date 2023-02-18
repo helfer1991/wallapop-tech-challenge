@@ -1,4 +1,4 @@
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, screen } from '@testing-library/react';
 import { FavouritesContextProvider } from '../../../context/FavouritesContext';
 import { Item } from '../item';
 
@@ -11,30 +11,59 @@ const testItem = {
 };
 
 describe('Item', () => {
-  it('should render the item details', () => {
-    const { getByText, getByAltText } = render(
-      <FavouritesContextProvider>
-        <Item item={testItem} />
-      </FavouritesContextProvider>
-    );
+  describe('should render the Item component before adding to favourites', () => {
+    beforeEach(() => {
+      render(
+        <FavouritesContextProvider>
+          <Item item={testItem} />
+        </FavouritesContextProvider>
+      );
+    });
 
-    expect(getByText(testItem.title)).toBeInTheDocument();
-    expect(getByText(testItem.description)).toBeInTheDocument();
-    expect(getByText('9€')).toBeInTheDocument();
-    expect(getByText(testItem.email)).toBeInTheDocument();
-    expect(getByAltText('item-image')).toBeInTheDocument();
-  });
+    it('should render the item details', () => {
+      expect(screen.getByText(testItem.title)).toBeInTheDocument();
+      expect(screen.getByText(testItem.description)).toBeInTheDocument();
+      expect(screen.getByText('9€')).toBeInTheDocument();
+      expect(screen.getByText(testItem.email)).toBeInTheDocument();
+      expect(screen.getByAltText('item-image')).toBeInTheDocument();
+    });
+  
+    it('should not show icon Heart Full', () => {
+      const iconHeartFull = screen.queryByTestId('icon-heart-full');
+      expect(iconHeartFull).not.toBeInTheDocument();
+    });
+  
+    it('should show icon Heart Empty', () => {
+      const iconHeartEmpty = screen.getByTestId('icon-heart-empty');
+      expect(iconHeartEmpty).toBeInTheDocument();
+    });
+  })
 
-  it('should add item to favourites', () => {
-    const { getByTestId } = render(
-      <FavouritesContextProvider>
-        <Item item={testItem} />
-      </FavouritesContextProvider>
-    );
+  describe('should add item to favourites', () => {
+    beforeEach(() => {
+      render(
+        <FavouritesContextProvider>
+          <Item item={testItem} />
+        </FavouritesContextProvider>
+      );
 
-    const button = getByTestId('add-to-favourites-button');
+      const button = screen.getByTestId('add-to-favourites-button');
+  
+      fireEvent.click(button);
+    });
 
-    fireEvent.click(button);
-    expect(button).toHaveAttribute('disabled');
-  });
+    it('should add item to favourites', () => {
+      expect(screen.getByTestId('add-to-favourites-button')).toHaveAttribute('disabled');
+    });
+
+    it('should show icon Heart Full', () => {
+      const iconHeartFull = screen.getByTestId('icon-heart-full');
+      expect(iconHeartFull).toBeInTheDocument();
+    });
+
+    it('should not show icon Heart Empty', () => {
+      const iconHeartEmpty = screen.queryByTestId('icon-heart-empty');
+      expect(iconHeartEmpty).not.toBeInTheDocument();
+    });
+  })
 });
