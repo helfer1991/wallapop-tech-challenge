@@ -16,38 +16,33 @@ export const ItemsListContainer = styled.section`
     margin: auto;
 `;
 
-export const SearchTitleButton = styled.button`
+export const SortButton = styled.button`
     align-self: self-start;
+    align-items: center;
+    display: flex;
     font-size: 16px;
     font-weight: 700;
-    margin: 0 0 8px 0;
+    margin: 0 0 16px 0;
     background-color: transparent;
     border: 0;
 `;
 
-export const SearchButtonText = styled.p`
+export const SortButtonText = styled.p`
     display: inline-block;
     margin: 0 0 0 4px;
     font-size: 16px;
     font-weight: 700;
     color: #13c1ac;
+    margin: 0 12px;
 `;
 
-export const SortButton = styled.button`
-    align-self: self-start;
-    background-color: transparent;
-    border: 0;
-    color: #000;
-    font-size: 14px;
-`;
-
-export const FilterButtonWrapper = styled.span`
+export const SearchButtonWrapper = styled.span`
     display: flex;
     gap: 12px;
     margin-bottom: 24px;
 `;
 
-export const FilterButton = styled.button<FilterButtonProps>`
+export const SearchButton = styled.button<FilterButtonProps>`
     align-self: center;
     background-color: ${(props) => props.isSelected ? '#13c1ac' : '#fff' };
     box-shadow: 0 1px 4px #2532381a;
