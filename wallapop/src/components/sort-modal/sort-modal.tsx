@@ -13,11 +13,11 @@ const sortCriteria = ['Title', 'Description', 'Price', 'Email'];
 export const SortModal: React.FC<SortModalProps> = ({ setCategory, show, onClose }) => {
     return (
         show ?
-        <Container onClick={onClose}>
+        <Container onClick={onClose} data-testid="sort-modal-container">
             <Wrapper onClick={e => e.stopPropagation()}>
                 <Title>Sort by:</Title>
                 {sortCriteria.map((criteria, index) => 
-                    <CategoryButton onClick={() => setCategory(criteria.toLowerCase())} isLastCategory={index === 3} key={`${criteria}-${index}`}>
+                    <CategoryButton data-testid={`sort-by-${criteria.toLowerCase()}-button`} onClick={() => setCategory(criteria.toLowerCase())} isLastCategory={index === 3} key={`${criteria}-${index}`}>
                         {criteria}
                     </CategoryButton>
                     )
