@@ -18,6 +18,15 @@ export const SortButton = styled.button`
     margin: 0 0 16px 0;
     background-color: transparent;
     border: 0;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    @media (min-width: 700px) {
+        font-size: 24px;
+        margin: 0 0 32px 0;
+    }
 `;
 
 export const SortButtonText = styled.p`
@@ -27,6 +36,10 @@ export const SortButtonText = styled.p`
     font-weight: 700;
     color: #13c1ac;
     margin: 0 12px;
+
+    @media (min-width: 700px) {
+        font-size: 24px;
+    }
 `;
 
 export const SearchButtonWrapper = styled.span`
@@ -38,14 +51,25 @@ export const SearchButtonWrapper = styled.span`
 export const SearchButton = styled.button<FilterButtonProps>`
     align-self: center;
     background-color: ${(props) => props.isSelected ? '#13c1ac' : '#fff' };
-    box-shadow: 0 1px 4px #2532381a;
+    box-shadow: 0 5px 8px #2532381a;
     border-radius: 25px;
     height: 30px;
     width: 100px;
     margin: 12px 0;
     font-weight: 700;
-    border-color: rgba(207,216,220,.5);
+    border: 0;
     font-size: 0.75rem;
     outline: none;
-    color: ${(props) => props.isSelected ? '#fff' : '#000' };;
+    color: ${(props) => props.isSelected ? '#fff' : '#000' };
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    @media (min-width: 700px) {
+        font-size: 1rem;
+        height: 40px;
+        margin: 24px 0;
+        width: 200px;
+    }
 `;

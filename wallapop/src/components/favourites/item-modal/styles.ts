@@ -30,6 +30,7 @@ export const RemoveFavouriteButton = styled.button`
     background-color: #13c1ac;
     border-radius: 25px;
     height: 30px;
+    border: 0;
     width: 100px;
     font-weight: 700;
     font-size: 16px;
@@ -37,4 +38,8 @@ export const RemoveFavouriteButton = styled.button`
     font-size: 0.75rem;
     outline: none;
     color: #fff;
+
+    &:hover {
+        cursor: pointer;
+    }
 `;

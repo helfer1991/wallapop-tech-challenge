@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Item } from "../item";
 
-
 import { ItemsListContainer, LoadMoreButton } from "./styles";
 
 export type Item = {

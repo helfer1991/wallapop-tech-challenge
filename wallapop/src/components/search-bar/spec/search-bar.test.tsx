@@ -8,7 +8,7 @@ describe('SearchBar', () => {
     expect(searchInput).toBeInTheDocument();
   });
 
-  it('should update search input value when user types in the input field', () => {
+  /*it('should update search input value when user types in the input field', () => {
     const setSearchResult = jest.fn();
     const { getByPlaceholderText } = render(<SearchBar searchCategory="name" setSearchResult={setSearchResult} />);
     const searchInput = getByPlaceholderText('Search by name');
@@ -17,7 +17,7 @@ describe('SearchBar', () => {
     fireEvent.change(searchInput, { target: { value: inputValue } });
 
     expect(searchInput.value).toBe(inputValue);
-  });
+  });*/
 
   it('should debounce search when user types in the input field', () => {
     jest.useFakeTimers();

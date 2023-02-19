@@ -19,4 +19,10 @@ export const Wrapper = styled.div`
     width: 500px;
     height: 400px;
     overflow-y: auto;
+
+    @media (min-width: 700px) {
+        padding: 32px 16px;
+        height: 500px;
+        width: 600px;
+    }
 `;

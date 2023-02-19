@@ -15,8 +15,13 @@ export const LoadMoreButton = styled.button`
     font-size: 1rem;
     color: #fff;
     border-radius: 25px;
+    border: 0;
     width: 180px;
     height: 50px;
     margin: 24px 0 24px 0;
     font-weight: 700;
+
+    &:hover {
+        cursor: pointer;
+    }
 `;

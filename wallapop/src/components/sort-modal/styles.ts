@@ -42,4 +42,8 @@ export const CategoryButton = styled.ul<OptionalMarginBottom>`
     font-size: 1rem;
     margin-bottom: 0;
     padding: 12px 0 0 0;
+
+    &:hover {
+        cursor: pointer;
+    }
 `;
