@@ -13,10 +13,14 @@ export const Wrapper = styled.div`
     flex-direction: column;
     display: flex;
     justify-content: space-between;
-    padding: 25px 75px;
 
     @media (min-width: 700px) {
         flex-direction: row;
+        padding: 12px;
+    }
+
+    @media (min-width: 1200px) {
+        padding: 25px 75px;
     }
 `;
 
@@ -32,9 +36,13 @@ export const TextWrapper = styled.span`
 `;
 
 export const Name = styled.h1`
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 700;
     color: rgba(207,216,230);
+
+    @media (min-width: 700px) {
+        font-size: 32px;
+    }
 `;
 
 export const HeartFull = styled(AiFillHeart)`
@@ -42,4 +50,8 @@ export const HeartFull = styled(AiFillHeart)`
     display: block;
     height: 32px;
     width: 32px;
+
+    @media (min-width: 700px) {
+        padding-right: 24px;
+    }
 `;

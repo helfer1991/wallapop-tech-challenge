@@ -7,9 +7,8 @@ type FilterButtonProps = {
 export const Container = styled.section`
     display: flex;
     flex-direction: column;
-    flex: 1 0 auto;
-    margin: auto;
-    padding-top: 48px;
+    flex: 1;
+    margin: 24px auto;
     width: 90%;
 `;
 

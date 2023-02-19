@@ -1,1 +1,1 @@
-export { ItemsList } from './items-list';
+export { ItemsListContainer as ItemsList } from './items-list.container';
