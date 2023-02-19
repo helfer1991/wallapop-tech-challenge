@@ -9,8 +9,8 @@ export const Container = styled.header`
     height: 70px;
     position: sticky;
     border-bottom: 2px solid #cfd8dc80;
-    z-index: 10;
-    margin-bottom: 48px;
+    z-index: 100;
+    top: 0;
 
     @media (min-width: 700px) {
         height: 160px;

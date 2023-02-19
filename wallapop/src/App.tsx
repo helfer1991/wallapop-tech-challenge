@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import './App.scss';
 import { ItemsList } from './components/items-list';
 import { Header } from './components/header/header';
+import { Footer } from './components/footer';
 import axios from "axios";
+import { Container} from './styles';
 
 export type Item = {
   title: string;
@@ -37,10 +38,11 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <Container>
       <Header />
       <ItemsList items={items} />
-    </div>
+      <Footer />
+    </Container>
   );
 }
 
