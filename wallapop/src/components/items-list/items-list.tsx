@@ -31,38 +31,38 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
   const [searchInput, setSearchInput] = useState<string>('');
   const [filterCategory, setFilterCategory] = useState<string>('title');
 
-  useEffect(() => {
-    let filteredItems = [];
-
-    if(searchTerm === 'title') {
+  const filterAndSortItems = (items: Item[], searchTerm: string, searchInput: string, filterCategory: string): Item[] => {
+    let filteredItems: Item[] = [];
+  
+    if (searchTerm === 'title') {
       filteredItems = items.filter(item => item.title.toLowerCase().includes(searchInput.toLowerCase()));
-    } else if(searchTerm === 'description') {
+    } else if (searchTerm === 'description') {
       filteredItems = items.filter(item => item.description.toLowerCase().includes(searchInput.toLowerCase()));
-    } else if(searchTerm === 'price') {
+    } else if (searchTerm === 'price') {
       filteredItems = items.filter(item => item.price.toLowerCase().includes(searchInput.toLowerCase()));
-    }
-    else {
+    } else {
       filteredItems = items.filter(item => item.email.toLowerCase().includes(searchInput.toLowerCase()));
     }
-    searchInput === ''
-      ? setSortedItems([...items].sort((a, b) => a[filterCategory].toLowerCase() > b[filterCategory].toLowerCase() ? 1 : -1)) 
-      : setSortedItems(filteredItems);
-
-  }, [searchInput, filterCategory]);
+  
+    const sortedItems = [...filteredItems].sort((a, b) => {
+      if (filterCategory === 'title') {
+        return a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1;
+      } else if (filterCategory === 'description') {
+        return a.description.toLowerCase() > b.description.toLowerCase() ? 1 : -1;
+      } else if (filterCategory === 'price') {
+        return parseInt(a.price) - parseInt(b.price);
+      } else {
+        return a.email.toLowerCase() > b.email.toLowerCase() ? 1 : -1;
+      }
+    });
+  
+    return sortedItems;
+  }
 
   useEffect(() => {
-    if(filterCategory === 'title') {
-      setSortedItems([...sortedItems].sort((a, b) => a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1));
-    } else if(filterCategory === 'description') {
-      setSortedItems([...sortedItems].sort((a, b) => a.description.toLowerCase() > b.description.toLowerCase() ? 1 : -1));
-    } else if(filterCategory === 'price') {
-      setSortedItems([...sortedItems].sort((a, b) => parseInt(a.price) - parseInt(b.price) ));
-    }
-    else {
-      setSortedItems([...sortedItems].sort((a, b) => a.email.toLowerCase() > b.email.toLowerCase() ? 1 : -1));
-    }
-    setFilterCategory(filterCategory);
-  }, [filterCategory]);
+    const sortedItems = filterAndSortItems(items, searchTerm, searchInput, filterCategory);
+    setSortedItems(sortedItems);
+  }, [items, searchTerm, searchInput, filterCategory]);
 
   const setSearchInputCallback = useCallback(
     (searchInputValue: string) => {
