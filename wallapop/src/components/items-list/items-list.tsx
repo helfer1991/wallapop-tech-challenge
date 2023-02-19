@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { SearchBar } from "../search-bar";
 import { SortModal } from "../sort-modal";
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
+import { EmptyState } from "../empty-state";
 
 import { Container, SortButton, SortButtonText, SearchButtonWrapper, SearchButton } from "./styles";
 
@@ -77,7 +78,7 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
         {showSortModal ? <IoIosArrowUp /> : <IoIosArrowDown />}
       </SortButton>
       <SortModal setCategory={setFilterCategory} show={showSortModal} onClose={() => setShowSortModal(false)} />
-      <ItemList items={sortedItems} />
+      {sortedItems.length === 0 ? <EmptyState /> : <ItemList items={sortedItems} />}
     </Container>
   );
 };

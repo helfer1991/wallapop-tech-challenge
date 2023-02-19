@@ -10,9 +10,14 @@ export const Container = styled.footer`
 
 export const Wrapper = styled.div`
     align-items: center;
+    flex-direction: column;
     display: flex;
     justify-content: space-between;
     padding: 25px 75px;
+
+    @media (min-width: 700px) {
+        flex-direction: row;
+    }
 `;
 
 export const Image = styled.img`
