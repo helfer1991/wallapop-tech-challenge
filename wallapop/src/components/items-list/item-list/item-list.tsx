@@ -31,7 +31,7 @@ export const ItemList: React.FC<ItemListProps> = ({ items }) => {
         {items && items.slice(0, isVisible).map((item, index) => (
             <Item item={item} key={`${item.title}-${index}`} />
         ))}
-        {items.length - isVisible !== 0 && items.length > 5 && <LoadMoreButton data-testid="load-more-button" onClick={showMoreItems}>Load more</LoadMoreButton>}
+        {items.length > isVisible && items.length > 5 && <LoadMoreButton data-testid="load-more-button" onClick={showMoreItems}>Load more</LoadMoreButton>}
     </ItemsListContainer>
   );
 };
