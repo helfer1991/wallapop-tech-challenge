@@ -6,7 +6,7 @@ import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 
 import { Container, SortButton, SortButtonText, SearchButtonWrapper, SearchButton } from "./styles";
 
-import { ItemList } from "../item-list";
+import { ItemList } from "./item-list";
 
 export type Item = {
     title: string;
@@ -24,7 +24,7 @@ const sortCriteria = ['Title', 'Description', 'Price', 'Email'];
 
 export const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
   const [showSortModal, setShowSortModal] = useState<boolean>(false);
-  const [sortedArray, setSortedArray] = useState<Array<Item>>(items);
+  const [sortedItems, setSortedItems] = useState<Array<Item>>(items);
   const [searchTerm, setSearchTerm] = useState<string>('title');
   const [searchInput, setSearchInput] = useState<string>('');
   const [filterCategory, setFilterCategory] = useState<string>('title');
@@ -42,19 +42,19 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
     else {
       filteredItems = items.filter(item => item.email.toLowerCase().includes(searchInput.toLowerCase()));
     }
-    searchInput === '' ? setSortedArray([...items]) : setSortedArray(filteredItems);
+    searchInput === '' ? setSortedItems([...items]) : setSortedItems(filteredItems);
   }, [searchInput]);
 
   useEffect(() => {
     if(filterCategory === 'title') {
-      setSortedArray([...sortedArray].sort((a, b) => a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1));
+      setSortedItems([...sortedItems].sort((a, b) => a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1));
     } else if(filterCategory === 'description') {
-      setSortedArray([...sortedArray].sort((a, b) => a.description.toLowerCase() > b.description.toLowerCase() ? 1 : -1));
+      setSortedItems([...sortedItems].sort((a, b) => a.description.toLowerCase() > b.description.toLowerCase() ? 1 : -1));
     } else if(filterCategory === 'price') {
-      setSortedArray([...sortedArray].sort((a, b) => parseInt(a.price) - parseInt(b.price) ));
+      setSortedItems([...sortedItems].sort((a, b) => parseInt(a.price) - parseInt(b.price) ));
     }
     else {
-      setSortedArray([...sortedArray].sort((a, b) => a.email.toLowerCase() > b.email.toLowerCase() ? 1 : -1));
+      setSortedItems([...sortedItems].sort((a, b) => a.email.toLowerCase() > b.email.toLowerCase() ? 1 : -1));
     }
     setFilterCategory(filterCategory);
   }, [filterCategory]);
@@ -77,7 +77,7 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
         {showSortModal ? <IoIosArrowUp /> : <IoIosArrowDown />}
       </SortButton>
       <SortModal setCategory={setFilterCategory} show={showSortModal} onClose={() => setShowSortModal(false)} />
-      <ItemList items={sortedArray} />
+      <ItemList items={sortedItems} />
     </Container>
   );
 };

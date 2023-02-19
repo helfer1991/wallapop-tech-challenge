@@ -21,6 +21,11 @@ export const Wrapper = styled.div`
     border-radius: 8px;
     padding: 24px;
     width: 300px;
+
+    @media (min-width: 700px) {
+        padding: 32px;
+        width: 400px;
+    }
 `;
 
 export const Title = styled.h4`

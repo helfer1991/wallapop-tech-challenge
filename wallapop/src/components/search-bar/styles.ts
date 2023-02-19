@@ -12,4 +12,13 @@ export const Search = styled.input`
         outline: none;
         border: 2px solid #36474f4d;
     }
+
+    @media (min-width: 700px) {
+        font-size: 20px;
+        height: 60px;
+
+        &::placeholder {
+            font-size: 20px;
+        }
+    }
 `;

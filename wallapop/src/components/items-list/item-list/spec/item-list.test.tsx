@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import { ItemList } from "../item-list";
-import { FavouritesContext } from '../../../context/FavouritesContext';
+import { FavouritesContext } from '../../../../context/FavouritesContext';
 
 
 const mockItems = [

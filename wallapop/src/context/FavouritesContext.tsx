@@ -29,7 +29,9 @@ export function FavouritesContextProvider({ children }: FavouritesProviderProps)
 
     const removeFromFavourites = (item: Item) => {
         const index = favourites.indexOf(item);
-        setFavourites([...favourites].filter(favourite => favourite !== item));
+        if(index > -1) {
+            setFavourites([...favourites.slice(0, index), ...favourites.slice(index + 1)]);
+        }
     }
 
     const isItemFavourite = (item: Item) => {

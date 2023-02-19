@@ -40,12 +40,11 @@ describe('SortModal', () => {
     expect(onCloseMock).toHaveBeenCalled();
   });
   
-  /*it.only('calls the "onClose" function when a category button is clicked', () => {
+  it('calls the "onClose" function when a category button is clicked', () => {
     const { getByTestId } = render(
       <SortModal setCategory={setCategoryMock} show onClose={onCloseMock} />
     );
-    screen.debug();
     fireEvent.click(getByTestId('sort-by-email-button'));
     expect(onCloseMock).toHaveBeenCalled();
-  });*/
+  });
 });

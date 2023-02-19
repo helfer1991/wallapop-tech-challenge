@@ -1,8 +1,8 @@
 import React, { useState, memo, useEffect } from 'react';
 
 import { Card, TextWrapper, UpperWrapper, Image, Title, FavouriteButton, HeartEmpty, HeartFull, Description, Price, Email } from './styles';
-import type { Item as ItemType } from '../items-list/items-list';
-import { useFavourites } from '../../hooks/useFavourites';
+import type { Item as ItemType } from '../../items-list';
+import { useFavourites } from '../../../../hooks/useFavourites';
 
 type ItemProps = {
     item: ItemType;
@@ -22,7 +22,7 @@ export const Item: React.FC<ItemProps> = memo(({ item }) => {
     }, [favourites]);
 
     return (
-        <Card>
+        <Card data-testid={`${item.title}`}>
             <Image src={item.image} alt="item-image" loading="lazy" />
             <TextWrapper>
                 <UpperWrapper>

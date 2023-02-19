@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { FavouritesContext, FavouritesContextProvider } from '../FavouritesContext';
 
@@ -56,46 +56,5 @@ describe('FavouritesContextProvider', () => {
 
     expect(favouritesList).toContainElement(favouriteItem);
   });
-
-  /*it('should remove an item from favourites', () => {
-    render(
-      <FavouritesContextProvider>
-        <TestComponent />
-      </FavouritesContextProvider>
-    );
-
-    const addToFavouritesButton = screen.getByText('Add to favourites');
-    fireEvent.click(addToFavouritesButton);
-
-    const favouritesList = screen.getByRole('list');
-    const favouriteItem = screen.getByText('Test item');
-    expect(favouritesList).toContainElement(favouriteItem);
-
-    fireEvent.click(favouriteItem);
-    expect(favouritesList).not.toContainElement(favouriteItem);
-  });
-
-  it('should return true if an item is a favourite', () => {
-    render(
-      <FavouritesContextProvider>
-        <TestComponent />
-      </FavouritesContextProvider>
-    );
-
-    const { isItemFavourite } = React.useContext(FavouritesContext);
-    const item = {
-      title: 'Test item',
-      description: 'This is a test item',
-      price: '$5',
-      email: 'test@test.com',
-      image: 'test.png',
-    };
-
-    expect(isFavourite(item)).toBe(false);
-
-    const addToFavouritesButton = screen.getByText('Add to favourites');
-    fireEvent.click(addToFavouritesButton);
-
-    expect(isItemFavourite(item)).toBe(true);
-  });*/
 });
+

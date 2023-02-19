@@ -1,5 +1,5 @@
 import { render, fireEvent, screen } from '@testing-library/react';
-import { FavouritesContextProvider } from '../../../context/FavouritesContext';
+import { FavouritesContextProvider } from '../../../../../context/FavouritesContext';
 import { Item } from '../item';
 
 const testItem = {
