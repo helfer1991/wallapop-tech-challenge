@@ -32,7 +32,11 @@ export const Image = styled.img`
 export const TextWrapper = styled.span`
     align-items: center;
     display: flex;
-    gap: 24px;
+    gap: 4px;
+
+    @media (min-width: 700px) {
+        gap: 24px;
+    }
 `;
 
 export const Name = styled.h1`

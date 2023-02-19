@@ -6,7 +6,7 @@ import { debounce } from "lodash";
 
 type SearchBarProps = {
     searchCategory?: string;
-    setSearchResult: React.Dispatch<React.SetStateAction<string>>;
+    setSearchResult: (searchInput: string) => void;
 }
 
 export const SearchBar: React.FC<SearchBarProps> = ({ searchCategory, setSearchResult }) => {

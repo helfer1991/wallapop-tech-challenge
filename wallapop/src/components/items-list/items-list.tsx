@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import { SearchBar } from "../search-bar";
 import { SortModal } from "../sort-modal";
@@ -10,6 +10,7 @@ import { Container, SortButton, SortButtonText, SearchButtonWrapper, SearchButto
 import { ItemList } from "./item-list";
 
 export type Item = {
+  [key: string] : string;
     title: string;
     description: string;
     price: string;
@@ -43,8 +44,9 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
     else {
       filteredItems = items.filter(item => item.email.toLowerCase().includes(searchInput.toLowerCase()));
     }
-    searchInput === '' ? setSortedItems([...items]) : setSortedItems(filteredItems);
-  }, [searchInput]);
+    searchInput === '' ? setSortedItems([...items].sort((a, b) => a[filterCategory].toLowerCase() > b[filterCategory].toLowerCase() ? 1 : -1)) : setSortedItems(filteredItems);
+
+  }, [searchInput, filterCategory]);
 
   useEffect(() => {
     if(filterCategory === 'title') {
@@ -60,9 +62,18 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
     setFilterCategory(filterCategory);
   }, [filterCategory]);
 
+  const setSearchInputCallback = useCallback(
+    (searchInputValue: string) => {
+      setSearchInput(searchInputValue);
+    },
+    [setSearchInput]
+  );
+
+  console.log(sortedItems);
+
   return (
     <Container>
-      <SearchBar searchCategory={searchTerm} setSearchResult={setSearchInput} />
+      <SearchBar searchCategory={searchTerm} setSearchResult={setSearchInputCallback} />
       <SearchButtonWrapper>
         {sortCriteria.map(criteria => 
           <SearchButton key={`button-${criteria}`} onClick={() => setSearchTerm(criteria.toLowerCase())} isSelected={searchTerm === criteria.toLowerCase()}>

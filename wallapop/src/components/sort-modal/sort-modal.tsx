@@ -10,20 +10,18 @@ type SortModalProps = {
 
 const sortCriteria = ['Title', 'Description', 'Price', 'Email'];
 
-export const SortModal: React.FC<SortModalProps> = ({ setCategory, show, onClose }) => {
-    return (
-        show ?
-        <Container onClick={onClose} data-testid="sort-modal-container">
-            <Wrapper>
-                <Title>Sort by:</Title>
-                {sortCriteria.map((criteria, index) => 
-                    <CategoryButton data-testid={`sort-by-${criteria.toLowerCase()}-button`} onClick={() => setCategory(criteria.toLowerCase())} isLastCategory={index === 3} key={`${criteria}-${index}`}>
-                        {criteria}
-                    </CategoryButton>
-                    )
-                }
-            </Wrapper>
-        </Container>
-        : null
-    );
-}
+export const SortModal: React.FC<SortModalProps> = ({ setCategory, show, onClose }) => (
+    show ?
+    <Container onClick={onClose} data-testid="sort-modal-container">
+        <Wrapper>
+            <Title>Sort by:</Title>
+            {sortCriteria.map((criteria, index) => 
+                <CategoryButton data-testid={`sort-by-${criteria.toLowerCase()}-button`} onClick={() => setCategory(criteria.toLowerCase())} isLastCategory={index === 3} key={`${criteria}-${index}`}>
+                    {criteria}
+                </CategoryButton>
+                )
+            }
+        </Wrapper>
+    </Container>
+    : null
+);

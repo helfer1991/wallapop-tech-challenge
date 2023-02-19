@@ -18,12 +18,21 @@ export const LeftWrapper = styled.div`
 export const Title = styled.h3`
     font-weight: 700;
     margin: 0;
+
+    @media (min-width: 700px) {
+        font-size: 24px;
+    }
 `;
 
 export const Image = styled.img`
     height: 100px;
     width: 100px;
     border-radius: 10px;
+
+    @media (min-width: 700px) {
+        height: 120px;
+        width: 120px;
+    }
 `;
 
 export const RemoveFavouriteButton = styled.button`
@@ -41,5 +50,11 @@ export const RemoveFavouriteButton = styled.button`
 
     &:hover {
         cursor: pointer;
+    }
+
+    @media (min-width: 700px) {
+        font-size: 18px;
+        height: 40px;
+        width: 120px;
     }
 `;

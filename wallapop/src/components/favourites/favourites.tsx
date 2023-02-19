@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { SearchBar } from '../search-bar';
-import { Container, Wrapper } from './styles';
+import { Container, Title, Wrapper } from './styles';
 import { ItemModal } from './item-modal';
 import { useFavourites } from '../../hooks/useFavourites';
 
@@ -21,12 +21,15 @@ export const Favourites: React.FC<FavouritesProps> = ({ show, onClose }) => {
         const filteredItems = favourites.filter(favourite => favourite.title.toLowerCase().includes(searchInput.toLowerCase()));
         searchInput === '' ? setSortedItems([...favourites]) : setSortedItems(filteredItems);
     }, [searchInput, favourites]);
+
+    console.log(sortedItems.length);
     
     return (
         show ?
         <Container onClick={onClose} data-testid="favourites-list">
             <Wrapper onClick={e => e.stopPropagation()}>
                 <SearchBar searchCategory="title" setSearchResult={setSearchInput} />
+                <Title>Your favourites:</Title>
                 {sortedItems && sortedItems.map((item, index) => <ItemModal key={`${item}-${index}`} item={item} />)}
             </Wrapper>
         </Container>

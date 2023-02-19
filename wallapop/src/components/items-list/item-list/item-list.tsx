@@ -20,7 +20,7 @@ export const ItemList: React.FC<ItemListProps> = ({ items }) => {
 
   const showMoreItems = useCallback(() => {
     setIsVisible((prevValue) => prevValue + 5);
-  }, [isVisible]);
+  }, [setIsVisible]);
 
   useEffect(() => {
     setIsVisible(5);
