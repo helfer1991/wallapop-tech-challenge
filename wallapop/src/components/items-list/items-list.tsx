@@ -45,14 +45,14 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
       <SearchButtonWrapper>
         {memoizedSearchButtons}
       </SearchButtonWrapper>
-      <SortButton onClick={() => setShowSortModal(!showSortModal)}>
+      <SortButton onClick={() => setShowSortModal(!showSortModal)} type="button" aria-label="Sort items by">
         Sort by:
         <SortButtonText>
           {filterCategory}
         </SortButtonText>
         {showSortModal ? <IoIosArrowUp data-testid="icon-arrow-up" /> : <IoIosArrowDown data-testid="icon-arrow-down" />}
       </SortButton>
-      <SortModal setCategory={setFilterCategory} show={showSortModal} onClose={() => setShowSortModal(false)} />
+      <SortModal category={filterCategory} setCategory={setFilterCategory} show={showSortModal} onClose={() => setShowSortModal(false)} />
       {sortedItems.length === 0 ? <EmptyState description="Your search had no results. Try again please!" /> : <ItemList items={sortedItems} />}
     </Container>
   );

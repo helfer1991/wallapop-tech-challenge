@@ -27,11 +27,17 @@ export const Item: React.FC<ItemProps> = memo(({ item }) => {
             <TextWrapper>
                 <UpperWrapper>
                     <Title>{item.title}</Title>
-                    <FavouriteButton data-testid="add-to-favourites-button" onClick={handleFavouriteClick} disabled={isFavourite}>
+                    <FavouriteButton
+                        data-testid="add-to-favourites-button"
+                        onClick={handleFavouriteClick}
+                        aria-label="Favourites list"
+                        type="button"
+                        disabled={isFavourite}
+                    >
                         {isFavourite ? <HeartFull data-testid="icon-heart-full" /> : <HeartEmpty data-testid="icon-heart-empty" />}
                     </FavouriteButton>
                 </UpperWrapper>
-                <Description aria-label="Characteristics">{item.description}</Description>
+                <Description>{item.description}</Description>
                 <Price>{parseInt(item.price).toLocaleString('de-DE')}€</Price>
                 <Email>{item.email}</Email>
             </TextWrapper>

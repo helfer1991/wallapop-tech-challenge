@@ -4,7 +4,6 @@ export const ItemsListContainer = styled.section`
     display: flex;
     flex-direction: column;
     gap: 24px;
-    margin: auto;
 `;
 
 export const LoadMoreButton = styled.button`

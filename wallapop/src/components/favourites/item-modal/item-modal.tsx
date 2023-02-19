@@ -18,7 +18,7 @@ export const ItemModal: React.FC<ItemModalProps> = ({ item, }) => {
         <Card data-testid={`${item.title}`}>
             <LeftWrapper>
                 <Title>{item.title}</Title>
-                <RemoveFavouriteButton onClick={handleRemove}>Remove :(</RemoveFavouriteButton>
+                <RemoveFavouriteButton onClick={handleRemove} type="button">Remove :(</RemoveFavouriteButton>
             </LeftWrapper>
             <Image src={item.image} loading="lazy" alt="favourite-item-image" />
         </Card>

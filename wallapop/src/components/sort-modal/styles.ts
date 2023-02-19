@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
-type OptionalMarginBottom = {
+type CategoryButtonProps = {
     isLastCategory?: boolean;
+    isSelected?: boolean;
 }
 
 export const Container = styled.div`
@@ -17,6 +18,7 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
+    display: inline;
     background-color: #fff;
     border-radius: 8px;
     padding: 24px;
@@ -34,16 +36,11 @@ export const Title = styled.h4`
     margin: 0 0 24px 0;
 `;
 
-export const CategoryButtonContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-`;
-
-export const CategoryButton = styled.ul<OptionalMarginBottom>`
+export const CategoryButton = styled.ul<CategoryButtonProps>`
     display: block;
     background-color: transparent;
     border-top: 1px solid rgba(0,0,0,.15);
-    color: #212529;
+    color: ${(props) => props.isSelected ? '#13c1ac' : '#212529'};
     font-size: 1rem;
     margin-bottom: 0;
     padding: 12px 0 0 0;
