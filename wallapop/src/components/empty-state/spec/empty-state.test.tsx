@@ -3,19 +3,41 @@ import { render, screen } from "@testing-library/react";
 import { EmptyState } from "../empty-state";
 
 describe("EmptyState", () => {
-    beforeEach(() => {
-        render(<EmptyState />);
+    describe('renders an Empty State component with an icon', () => {
+        beforeEach(() => {
+            render(<EmptyState description="some description"/>);
+        });
+
+        it("renders the sad icon", () => {
+            const icon = screen.getByTestId("icon-sad");
+    
+            expect(icon).toBeInTheDocument();
+        });
+    
+        it("renders a description", () => {
+            const description = screen.getByText("some description");
+    
+            expect(description).toBeInTheDocument();
+        });
     });
 
-    it("renders the sad icon", () => {
-        const icon = screen.getByTestId("icon-sad");
+    describe('renders an Empty State component with an icon', () => {
+        beforeEach(() => {
+            render(<EmptyState hasIcon={false} description="some description"/>);
+        });
 
-        expect(icon).toBeInTheDocument();
-    });
+        it("renders the sad icon", () => {
+            const icon = screen.queryByTestId("icon-sad");
+    
+            expect(icon).not.toBeInTheDocument();
+        });
+    
+        it("renders a description", () => {
+            const description = screen.getByText("some description");
+    
+            expect(description).toBeInTheDocument();
+        });
+    })
 
-    it("renders a description", () => {
-        const description = screen.getByText("Your search had no results. Try again please!");
 
-        expect(description).toBeInTheDocument();
-    });
 });

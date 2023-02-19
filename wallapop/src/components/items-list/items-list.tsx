@@ -89,7 +89,7 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
         {showSortModal ? <IoIosArrowUp data-testid="icon-arrow-up" /> : <IoIosArrowDown data-testid="icon-arrow-down" />}
       </SortButton>
       <SortModal setCategory={setFilterCategory} show={showSortModal} onClose={() => setShowSortModal(false)} />
-      {sortedItems.length === 0 ? <EmptyState /> : <ItemList items={sortedItems} />}
+      {sortedItems.length === 0 ? <EmptyState description="Your search had no results. Try again please!" /> : <ItemList items={sortedItems} />}
     </Container>
   );
 };

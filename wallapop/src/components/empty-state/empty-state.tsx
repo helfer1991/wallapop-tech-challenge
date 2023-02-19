@@ -2,9 +2,14 @@ import React from "react";
 
 import { Container, SadIcon, Description } from './styles';
 
-export const EmptyState: React.FC = () => (
+type EmptyStateProps = {
+    hasIcon?: boolean;
+    description: string;
+}
+
+export const EmptyState: React.FC<EmptyStateProps> = ({ hasIcon = true, description }) => (
     <Container data-testid="empty-state">
-        <SadIcon data-testid="icon-sad" />
-        <Description>Your search had no results. Try again please!</Description>
+        {hasIcon && <SadIcon data-testid="icon-sad" />}
+        <Description>{description}</Description>
     </Container>
 )

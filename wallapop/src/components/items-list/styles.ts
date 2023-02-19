@@ -70,7 +70,7 @@ export const SearchButton = styled.button<FilterButtonProps>`
     }
 
     @media (min-width: 700px) {
-        font-size: 1rem;
+        font-size: 1.25rem;
         height: 40px;
         margin: 24px 0;
         width: 200px;

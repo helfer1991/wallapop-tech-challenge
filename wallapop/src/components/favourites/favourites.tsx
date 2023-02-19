@@ -26,19 +26,26 @@ export const Favourites: React.FC<FavouritesProps> = ({ show, onClose }) => {
     useEffect(() => {
         !show && setSearchInput('');
     }, [show]);
+
+    if(!show) {
+        return null;
+    }
     
     return (
-        show ?
         <Container onClick={onClose} data-testid="favourites-list">
             <Wrapper onClick={e => e.stopPropagation()}>
                 <SearchBar searchCategory="title" setSearchResult={setSearchInput} />
                 <Title>Your favourites:</Title>
-                {sortedItems.length === 0 && searchInput !== ''
-                    ? <EmptyState /> 
-                    : sortedItems.map((item, index) => <ItemModal key={`${item}-${index}`} item={item} />)
-                }
+                {sortedItems.length === 0 ? (
+                    searchInput !== '' ? (
+                        <EmptyState hasIcon description="Your search had no results. Try again please!" />
+                    ) : (
+                        <EmptyState hasIcon={false} description="You have no favourites!" />
+                    )
+                )   : (
+                    sortedItems.map((item, index) => <ItemModal key={`${item}-${index}`} item={item} />)
+                )}
             </Wrapper>
         </Container>
-        : null
     );
 }
