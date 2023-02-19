@@ -1,14 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { ItemsList } from './items-list';
-
-export type Item = {
-    title: string;
-    description: string;
-    price: string;
-    email: string;
-    image: string;
-  }
+import type { Item } from './items-list';
 
 export const ItemsListContainer: React.FC = () => {
     const [items, setItems] = useState<Array<Item>>([]);

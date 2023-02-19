@@ -1,16 +1,10 @@
 import React, { createContext, useState } from 'react';
+import { Item } from '../components/items-list/items-list';
 
 type FavouritesProviderProps = {
     children: React.ReactNode;
 }
 
-type Item = {
-    title: string;
-    description: string;
-    price: string;
-    email: string;
-    image: string;
-}
 export type FavouritesContextType = {
     favourites: Array<Item>;
     addToFavourites: (item: Item) => void;

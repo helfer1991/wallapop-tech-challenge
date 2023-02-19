@@ -1,21 +1,13 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, memo } from "react";
 import { Item } from "./item";
-
+import { Item as ItemType } from "../items-list";
 import { ItemsListContainer, LoadMoreButton } from "./styles";
 
-export type Item = {
-    title: string;
-    description: string;
-    price: string;
-    email: string;
-    image: string;
-}
-
 type ItemListProps = {
-  items: Array<Item>;
+  items: Array<ItemType>;
 }
 
-export const ItemList: React.FC<ItemListProps> = ({ items }) => {
+export const ItemList: React.FC<ItemListProps> = memo(({ items }) => {
   const [isVisible, setIsVisible] = useState<number>(5);
 
   const showMoreItems = useCallback(() => {
@@ -34,4 +26,4 @@ export const ItemList: React.FC<ItemListProps> = ({ items }) => {
         {items.length > isVisible && items.length > 5 && <LoadMoreButton data-testid="load-more-button" onClick={showMoreItems}>Load more</LoadMoreButton>}
     </ItemsListContainer>
   );
-};
+});
