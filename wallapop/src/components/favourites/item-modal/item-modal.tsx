@@ -15,7 +15,7 @@ export const ItemModal: React.FC<ItemModalProps> = ({ item, }) => {
     }
 
     return (
-        <Card>
+        <Card data-testid={`${item.title}`}>
             <LeftWrapper>
                 <Title>{item.title}</Title>
                 <RemoveFavouriteButton onClick={handleRemove}>Remove :(</RemoveFavouriteButton>

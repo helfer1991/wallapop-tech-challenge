@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { SearchBar } from '../search-bar';
+import { EmptyState } from '../empty-state';
 import { Container, Title, Wrapper } from './styles';
 import { ItemModal } from './item-modal';
 import { useFavourites } from '../../hooks/useFavourites';
@@ -22,7 +23,9 @@ export const Favourites: React.FC<FavouritesProps> = ({ show, onClose }) => {
         searchInput === '' ? setSortedItems([...favourites]) : setSortedItems(filteredItems);
     }, [searchInput, favourites]);
 
-    console.log(sortedItems.length);
+    useEffect(() => {
+        !show && setSearchInput('');
+    }, [show]);
     
     return (
         show ?
@@ -30,7 +33,10 @@ export const Favourites: React.FC<FavouritesProps> = ({ show, onClose }) => {
             <Wrapper onClick={e => e.stopPropagation()}>
                 <SearchBar searchCategory="title" setSearchResult={setSearchInput} />
                 <Title>Your favourites:</Title>
-                {sortedItems && sortedItems.map((item, index) => <ItemModal key={`${item}-${index}`} item={item} />)}
+                {sortedItems.length === 0 && searchInput !== ''
+                    ? <EmptyState /> 
+                    : sortedItems.map((item, index) => <ItemModal key={`${item}-${index}`} item={item} />)
+                }
             </Wrapper>
         </Container>
         : null

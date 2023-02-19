@@ -44,7 +44,9 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
     else {
       filteredItems = items.filter(item => item.email.toLowerCase().includes(searchInput.toLowerCase()));
     }
-    searchInput === '' ? setSortedItems([...items].sort((a, b) => a[filterCategory].toLowerCase() > b[filterCategory].toLowerCase() ? 1 : -1)) : setSortedItems(filteredItems);
+    searchInput === ''
+      ? setSortedItems([...items].sort((a, b) => a[filterCategory].toLowerCase() > b[filterCategory].toLowerCase() ? 1 : -1)) 
+      : setSortedItems(filteredItems);
 
   }, [searchInput, filterCategory]);
 
@@ -69,8 +71,6 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
     [setSearchInput]
   );
 
-  console.log(sortedItems);
-
   return (
     <Container>
       <SearchBar searchCategory={searchTerm} setSearchResult={setSearchInputCallback} />
@@ -86,7 +86,7 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
         <SortButtonText>
           {filterCategory}
         </SortButtonText>
-        {showSortModal ? <IoIosArrowUp /> : <IoIosArrowDown />}
+        {showSortModal ? <IoIosArrowUp data-testid="icon-arrow-up" /> : <IoIosArrowDown data-testid="icon-arrow-down" />}
       </SortButton>
       <SortModal setCategory={setFilterCategory} show={showSortModal} onClose={() => setShowSortModal(false)} />
       {sortedItems.length === 0 ? <EmptyState /> : <ItemList items={sortedItems} />}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, screen } from '@testing-library/react';
+import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import { ItemsList } from '../items-list';
 import { FavouritesContextProvider } from '../../../context/FavouritesContext';
 
@@ -53,6 +53,42 @@ describe('ItemsList', () => {
           const itemTitles = screen.getAllByTestId('Item 2').map((title) => title.textContent);
           expect(itemTitles).toEqual(['Item 2Description 2200€email2@test.com']);
       });
+
+      it('does not render any favourites due to unmatched filter input', async () => {
+        const searchInput = screen.getByRole('searchbox');
+        fireEvent.change(searchInput, { target: { value: 'Missing Item' } });
+        await waitFor(() => {
+          expect(screen.queryAllByTestId(/^Item/)).toHaveLength(0);
+        })
+      });
+
+      it('renders Empty State component due to unmatched filter input', async () => {
+        const searchInput = screen.getByRole('searchbox');
+        fireEvent.change(searchInput, { target: { value: 'Missing Item' } });
+        await waitFor(() => {
+          expect(screen.getByTestId('empty-state')).toBeInTheDocument();
+        })
+      });
+
+      it('renders an icon arrow pointing down', () => {
+        expect(screen.getByTestId('icon-arrow-down')).toBeInTheDocument();
+      });
+
+      it('does not render an icon arrow pointing up', () => {
+        expect(screen.queryByTestId('icon-arrow-up')).not.toBeInTheDocument();
+      });
+
+      it('renders an icon arrow pointing up when clicking on the sort button', () => {
+        const sortButton = screen.getByText('Sort by:');
+        fireEvent.click(sortButton);
+        expect(screen.getByTestId('icon-arrow-up')).toBeInTheDocument();
+      });
+
+      it('does not render an icon arrow pointing down when clicking on the sort button', () => {
+        const sortButton = screen.getByText('Sort by:');
+        fireEvent.click(sortButton);
+        expect(screen.queryByTestId('icon-arrow-down')).not.toBeInTheDocument();
+      })
 
       it('sorts items by description', () => {
           const sortButton = screen.getByText('Sort by:');

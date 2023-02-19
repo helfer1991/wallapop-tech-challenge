@@ -20,20 +20,36 @@ describe('Item', () => {
       );
     });
 
-    it('should render the item details', () => {
+    it('renders the item title', () => {
       expect(screen.getByText(testItem.title)).toBeInTheDocument();
+    });
+
+
+    it('renders the item description', () => {
       expect(screen.getByText(testItem.description)).toBeInTheDocument();
+    });
+
+
+    it('renders the item price', () => {
       expect(screen.getByText('9€')).toBeInTheDocument();
+    });
+
+
+    it('renders the item email', () => {
       expect(screen.getByText(testItem.email)).toBeInTheDocument();
+    });
+
+
+    it('renders the item image', () => {
       expect(screen.getByAltText('item-image')).toBeInTheDocument();
     });
   
-    it('should not show icon Heart Full', () => {
+    it('does not render icon Heart Full', () => {
       const iconHeartFull = screen.queryByTestId('icon-heart-full');
       expect(iconHeartFull).not.toBeInTheDocument();
     });
   
-    it('should show icon Heart Empty', () => {
+    it('renders icon Heart Empty', () => {
       const iconHeartEmpty = screen.getByTestId('icon-heart-empty');
       expect(iconHeartEmpty).toBeInTheDocument();
     });
@@ -56,12 +72,12 @@ describe('Item', () => {
       expect(screen.getByTestId('add-to-favourites-button')).toHaveAttribute('disabled');
     });
 
-    it('should show icon Heart Full', () => {
+    it('renders icon Heart Full', () => {
       const iconHeartFull = screen.getByTestId('icon-heart-full');
       expect(iconHeartFull).toBeInTheDocument();
     });
 
-    it('should not show icon Heart Empty', () => {
+    it('does not render icon Heart Empty', () => {
       const iconHeartEmpty = screen.queryByTestId('icon-heart-empty');
       expect(iconHeartEmpty).not.toBeInTheDocument();
     });
