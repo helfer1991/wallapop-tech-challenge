@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import { FavouritesContext, FavouritesContextProvider } from '../FavouritesContext';
+import { FavouritesContext, FavouritesContextProvider, FavouritesContextType } from '../FavouritesContext';
 
 const TestComponent = () => {
-  const { addToFavourites, favourites } = React.useContext(FavouritesContext);
+  const { addToFavourites, favourites, removeFromFavourites, isItemFavourite } = useContext(FavouritesContext);
 
   const item = {
     title: 'Test item',
     description: 'This is a test item',
-    price: '$5',
+    price: '5',
     email: 'test@test.com',
     image: 'test.png',
   };
@@ -17,14 +17,16 @@ const TestComponent = () => {
     addToFavourites(item);
   };
 
+  const handleRemoveFromFavourites = () => {
+    removeFromFavourites(item);
+  };
+
   return (
     <div>
       <button onClick={handleAddToFavourites}>Add to favourites</button>
-      <ul>
-        {favourites.map((favourite, index) => (
-          <li key={index}>{favourite.title}</li>
-        ))}
-      </ul>
+      <p role="list">Favourites: {favourites.map((favourite) => favourite.title).join(', ')}</p>
+      <button onClick={handleRemoveFromFavourites}>Remove from favourites</button>
+      <p>is {item.title} favourite?: {isItemFavourite(item).toString()}</p>
     </div>
   );
 };
@@ -33,11 +35,11 @@ describe('FavouritesContextProvider', () => {
   it('should render the children components', () => {
     render(
       <FavouritesContextProvider>
-        <div>Test</div>
+        <div>Test Component</div>
       </FavouritesContextProvider>
     );
 
-    const element = screen.getByText('Test');
+    const element = screen.getByText('Test Component');
     expect(element).toBeInTheDocument();
   });
 
@@ -52,9 +54,60 @@ describe('FavouritesContextProvider', () => {
     fireEvent.click(addToFavouritesButton);
 
     const favouritesList = screen.getByRole('list');
-    const favouriteItem = screen.getByText('Test item');
+    const favouriteItem = screen.getByText('Favourites: Test item');
 
     expect(favouritesList).toContainElement(favouriteItem);
+  });
+
+  it('should remove an item from favourites', () => {
+    render(
+      <FavouritesContextProvider>
+        <TestComponent />
+      </FavouritesContextProvider>
+    );
+
+    const addToFavouritesButton = screen.getByText('Add to favourites');
+    fireEvent.click(addToFavouritesButton);
+
+    const removeFromFavouritesButton = screen.getByText('Remove from favourites');
+    fireEvent.click(removeFromFavouritesButton);
+
+    const favouritesList = screen.getByRole('list');
+    const favouriteItem = screen.queryByText('Test item');
+  
+    expect(favouritesList).not.toContainElement(favouriteItem);
+  });
+
+  it('should check true if item is in the favourites', () => {
+    render(
+      <FavouritesContextProvider>
+        <TestComponent />
+      </FavouritesContextProvider>
+    );
+
+    const addToFavouritesButton = screen.getByText('Add to favourites');
+    fireEvent.click(addToFavouritesButton);
+
+    const favouritesList = screen.getByRole('list');
+    const favouriteItem = screen.getByText('Favourites: Test item');
+  
+    expect(favouritesList).toContainElement(favouriteItem);
+  });
+
+  it('should return false if item is not in favourites', () => {
+    render(
+      <FavouritesContextProvider>
+        <TestComponent />
+      </FavouritesContextProvider>
+    );
+
+    const addToFavouritesButton = screen.getByText('Add to favourites');
+    fireEvent.click(addToFavouritesButton);
+
+    const favouritesList = screen.getByRole('list');
+    const favouriteItem = screen.queryByText('Favourites: Test item 2');
+  
+    expect(favouritesList).not.toContainElement(favouriteItem);
   });
 });
 

@@ -15,7 +15,7 @@ To choose the category to use as a filter on the search bar I thought 4 buttons 
 
 There's also an Empty State component to display when a given search yields no results.
 
-I have created 2 hooks: 1 used to filter and sort the items, the other to call the Context API to allocate the favourites and manipulate that list.
+I have created 2 hooks: 1 used to filter and sort the items, the other to call the Context API to allocate the favourites and manipulate that list. The hook used over there was an useReducer to manipulate the state.
 
 The favourites are accessible by a button on the Header component.
 The footer component is a static and simple one, just with the Wallapop name and a nice string using my name :)
@@ -24,7 +24,7 @@ The items-list folder has:
 - items-list.container, where the API call (using Axios) is done - separation of data fetching and presentional logic layer;
 - items-list, where the action takes place;
 - item-list, that renders a list of items. That list of items is already sorted. This component was wrapped in memo in order to avoid unnecessary rerenders everytime another action takes place on the parent component (for example, when choosing another filter, or sorting method);
-- items -, an item to be rendered by the item-list.
+- item, an item to be rendered by the item-list.
 
 I've also used React Icons to display enable adding (or removing) items to the favourites. They are hearts that are attached to each card item. So, if you want to add a given item to the favourites, just click on the heart! Once you click, it gets disabled, so to remove it you have to click on the "Remove" button on the favourites, as mentioned :)
 
@@ -38,8 +38,6 @@ This solution also has a Responsive Design :)
 Essentially, there are 3 breakpoints: smallscreen (until 700px width), tablet (until 1200px) and desktop.
 
 I didn't think it was necessary to use any kind of hook to determine the viewport and render X or Y component/image, I've only written CSS.
-
-On the FavouritesContext I could have used an useReducer hook to deal with adding/removing items to favourites, although I guess that's a matter of personal preference and the overall manipulation of that list is simple.
 
 When it comes to improvements, I would have liked to have written more unit-tests and created a loading state component to show when the data is being fetched.
 However, unfortunately I did not have time. In the last weekend by grandmother has died and I took some days off as I was having a hard time at focusing on my tasks and needed a bit of time to clear my head up.

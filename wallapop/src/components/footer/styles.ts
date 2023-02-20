@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
 
     @media (min-width: 700px) {
         flex-direction: row;
-        padding: 12px;
+        margin-top: 32px;
     }
 
     @media (min-width: 1200px) {
