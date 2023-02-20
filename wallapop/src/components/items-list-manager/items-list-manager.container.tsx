@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import { ItemsList } from './items-list';
-import type { Item } from './items-list';
+import { ItemsListManager } from './items-list-manager';
+import type { Item } from './items-list-manager';
 import { Skeleton } from '../skeleton';
 
-export const ItemsListContainer: React.FC = () => {
+export const ItemsListManagerContainer: React.FC = () => {
     const [items, setItems] = useState<Array<Item>>([]);
     const [loading, setLoading] = useState<boolean>(true);
   
@@ -29,6 +29,6 @@ export const ItemsListContainer: React.FC = () => {
     }
 
     return (
-        <ItemsList items={items} />
+        <ItemsListManager items={items} />
     );
 };

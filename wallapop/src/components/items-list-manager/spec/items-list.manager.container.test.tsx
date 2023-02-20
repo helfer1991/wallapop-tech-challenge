@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, waitFor, screen, act } from '@testing-library/react';
 import axios from 'axios';
-import { ItemsListContainer } from '../items-list.container';
+import { ItemsListManagerContainer } from '../items-list-manager.container';
 import { FavouritesContextProvider } from '../../../context/FavouritesContext';
 
 
@@ -34,7 +34,7 @@ describe('ItemsListContainer', () => {
     
     render(
         <FavouritesContextProvider>
-            <ItemsListContainer />
+            <ItemsListManagerContainer />
         </FavouritesContextProvider>
     );
   });

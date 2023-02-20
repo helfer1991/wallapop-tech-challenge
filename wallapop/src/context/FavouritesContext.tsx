@@ -1,5 +1,5 @@
 import React, { createContext, useReducer } from 'react';
-import { Item } from '../components/items-list/items-list';
+import { Item } from '../components/items-list-manager/items-list-manager';
 
 type FavouritesProviderProps = {
   children: React.ReactNode;

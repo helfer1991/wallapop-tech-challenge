@@ -1,7 +1,7 @@
 import React, { useState, memo, useEffect } from 'react';
 
 import { Card, TextWrapper, UpperWrapper, Image, Title, FavouriteButton, HeartEmpty, HeartFull, Description, Price, Email } from './styles';
-import type { Item as ItemType } from '../../items-list';
+import type { Item as ItemType } from '../../items-list-manager';
 import { useFavourites } from '../../../../hooks/useFavourites';
 
 type ItemProps = {

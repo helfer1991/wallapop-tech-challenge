@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import type { Item } from "../components/items-list/items-list";
+import type { Item } from "../components/items-list-manager/items-list-manager";
 import { Categories } from "../constants";
 
 export const useFilteredAndSortedItems = (items: Array<Item>, searchCategory: string, searchInput: string, filterCategory: string): Array<Item> => {

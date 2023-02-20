@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { ItemList } from "../item-list";
+import { ItemsList } from "../items-list";
 import { FavouritesContext } from '../../../../context/FavouritesContext';
 
 
@@ -95,11 +95,11 @@ const mockFavouritesContextValue = {
   isItemFavourite: jest.fn(),
 };
 
-describe("ItemList component", () => {
-  describe('ItemList component with less than 5 items', () => {
+describe("ItemsList component", () => {
+  describe('ItemsList component with less than 5 items', () => {
     beforeEach(() => {
         render(
-          <ItemList items={mockItems} />,
+          <ItemsList items={mockItems} />,
           {
             wrapper: ({ children }) => <FavouritesContext.Provider value={mockFavouritesContextValue}>{children}</FavouritesContext.Provider>
           }
@@ -121,10 +121,10 @@ describe("ItemList component", () => {
     });
   })
 
-  describe('ItemList component with more than 5 items', () => {
+  describe('ItemsList component with more than 5 items', () => {
     beforeEach(() => {
         render(
-          <ItemList items={mockItemsMoreThan5} />,
+          <ItemsList items={mockItemsMoreThan5} />,
           {
             wrapper: ({ children }) => <FavouritesContext.Provider value={mockFavouritesContextValue}>{children}</FavouritesContext.Provider>
           }

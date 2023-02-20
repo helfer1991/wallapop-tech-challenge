@@ -1,0 +1,1 @@
+export { ItemsListManagerContainer as ItemsListManager } from './items-list-manager.container';

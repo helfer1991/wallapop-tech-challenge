@@ -21,11 +21,11 @@ I have created 2 hooks: 1 used to filter and sort the items, the other to call t
 The favourites are accessible by a button on the Header component.
 The footer component is a static and simple one, just with the Wallapop name and a nice string using my name :)
 
-The items-list folder has:
-- items-list.container, where the API call (using Axios) is done - separation of data fetching and presentional logic layer;
-- items-list, where the action takes place;
-- item-list, that renders a list of items. That list of items is already sorted. This component was wrapped in memo in order to avoid unnecessary rerenders everytime another action takes place on the parent component (for example, when choosing another filter, or sorting method);
-- item, an item to be rendered by the item-list.
+The items-list-manager folder has:
+- items-list-manager.container, where the API call (using Axios) is done - separation of data fetching and presentional logic layer;
+- items-list-manager, where the action takes place;
+- items-list, that renders a list of items. That list of items is already sorted. This component was wrapped in memo in order to avoid unnecessary rerenders everytime another action takes place on the parent component (for example, when choosing another filter, or sorting method);
+- item, an item to be rendered by the items-list.
 
 I've also used React Icons to display enable adding (or removing) items to the favourites. They are hearts that are attached to each card item. So, if you want to add a given item to the favourites, just click on the heart! Once you click, it gets disabled, so to remove it you have to click on the "Remove" button on the favourites, as mentioned :)
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, screen, waitFor } from '@testing-library/react';
-import { ItemsList } from '../items-list';
+import { ItemsListManager } from '../items-list-manager';
 import { FavouritesContextProvider } from '../../../context/FavouritesContext';
 
 const mockItems = [
@@ -32,7 +32,7 @@ describe('ItemsList', () => {
       beforeEach(() => {
         render(
             <FavouritesContextProvider>
-                <ItemsList items={mockItems} />
+                <ItemsListManager items={mockItems} />
             </FavouritesContextProvider>
         );
       })
@@ -117,7 +117,7 @@ describe('ItemsList', () => {
       it('filters items by unmatched term and renders EmptyState component', () => {
         render(
           <FavouritesContextProvider>
-              <ItemsList items={[]} />
+              <ItemsListManager items={[]} />
           </FavouritesContextProvider>
         );
 

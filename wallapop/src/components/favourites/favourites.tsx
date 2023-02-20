@@ -6,7 +6,7 @@ import { Container, Title, Wrapper } from './styles';
 import { ItemModal } from './item-modal';
 import { useFavourites } from '../../hooks/useFavourites';
 
-import type { Item } from '../items-list/items-list'
+import type { Item } from '../items-list-manager/items-list-manager'
 
 type FavouritesProps = {
     show: boolean;

@@ -10,7 +10,7 @@ import { ScrollToTopButton } from "../scroll-to-top-button";
 
 import { Container, SortButton, SortButtonText, SearchButtonWrapper, SearchButton } from "./styles";
 
-import { ItemList } from "./item-list";
+import { ItemsList } from "./items-list";
 
 export type Item = {
     title: string;
@@ -24,7 +24,7 @@ type ItemsListProps = {
   items: Array<Item>;
 }
 
-export const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
+export const ItemsListManager: React.FC<ItemsListProps> = ({ items }) => {
   const [showSortModal, setShowSortModal] = useState<boolean>(false);
   const [searchCategory, setSearchCategory] = useState<string>(Categories.TITLE);
   const [searchInput, setSearchInput] = useState<string>('');
@@ -55,7 +55,7 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
         {showSortModal ? <IoIosArrowUp data-testid="icon-arrow-up" /> : <IoIosArrowDown data-testid="icon-arrow-down" />}
       </SortButton>
       <SortModal category={filterCategory} setCategory={setFilterCategory} show={showSortModal} onClose={() => setShowSortModal(false)} />
-      {sortedItems.length === 0 ? <EmptyState description="Your search had no results. Try again please!" /> : <ItemList items={sortedItems} />}
+      {sortedItems.length === 0 ? <EmptyState description="Your search had no results. Try again please!" /> : <ItemsList items={sortedItems} />}
     </Container>
   );
 };

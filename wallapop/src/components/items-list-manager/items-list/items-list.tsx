@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback, memo } from "react";
 import { Item } from "./item";
-import { Item as ItemType } from "../items-list";
+import { Item as ItemType } from "../items-list-manager";
 import { ItemsListContainer, LoadMoreButton } from "./styles";
 
 type ItemListProps = {
   items: Array<ItemType>;
 }
 
-export const ItemList: React.FC<ItemListProps> = memo(({ items }) => {
+export const ItemsList: React.FC<ItemListProps> = memo(({ items }) => {
   const [isVisible, setIsVisible] = useState<number>(5);
 
   const showMoreItems = useCallback(() => {

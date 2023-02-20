@@ -1,7 +1,7 @@
 import React from "react";
 import { useFavourites } from "../../../hooks/useFavourites";
 import { Card, LeftWrapper, Title, Image, RemoveFavouriteButton } from './styles';
-import type { Item } from "../../items-list/items-list";
+import type { Item } from "../../items-list-manager/items-list-manager";
 
 type ItemModalProps = {
     item: Item
