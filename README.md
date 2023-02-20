@@ -11,6 +11,7 @@ Regarding the tech stack, I've been used Typescript, Styled-Components and React
 
 The application meets (I think! I hope!) all the requirements you've specified. There is one modal for the favourites.
 I've decided to also use a modal to choose the category to filter the items.
+The search feature has a debouncer that acts after 500ms :)
 To choose the category to use as a filter on the search bar I thought 4 buttons would be ok. The selected button is the green one. Every time you click on a different button its style will change :)
 
 There's also an Empty State component to display when a given search yields no results.
