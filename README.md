@@ -28,6 +28,9 @@ The items-list folder has:
 
 I've also used React Icons to display enable adding (or removing) items to the favourites. They are hearts that are attached to each card item. So, if you want to add a given item to the favourites, just click on the heart! Once you click, it gets disabled, so to remove it you have to click on the "Remove" button on the favourites, as mentioned :)
 
+On the favourites modal, if you click somewhere outside of the modal it will get closed :)
+For the modal you open when you want to define the sorting criteria, it will close when you click on a criteria, or outside of the modal also :)
+
 I've also taken a bit of care when it comes to accessibility by adding some aria-label tags.
 
 The goal was to develop an optimized version of the application, hence the use of memoization, albeit not excessively, as memoization always comes with a cost, thus a cost-benefit analysis has to get done.
