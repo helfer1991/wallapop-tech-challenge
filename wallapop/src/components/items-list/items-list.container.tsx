@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import { ItemsList } from './items-list';
 import type { Item } from './items-list';
+import { Skeleton } from '../skeleton';
 
 export const ItemsListContainer: React.FC = () => {
     const [items, setItems] = useState<Array<Item>>([]);
@@ -24,7 +25,7 @@ export const ItemsListContainer: React.FC = () => {
     }, []);
   
     if(loading) {
-      return <p>loading...</p>
+      return <Skeleton />
     }
 
     return (

@@ -39,10 +39,15 @@ Essentially, there are 3 breakpoints: smallscreen (until 700px width), tablet (u
 
 I didn't think it was necessary to use any kind of hook to determine the viewport and render X or Y component/image, I've only written CSS.
 
-When it comes to improvements, I would have liked to have written more unit-tests and created a loading state component to show when the data is being fetched.
-However, unfortunately I did not have time. In the last weekend by grandmother has died and I took some days off as I was having a hard time at focusing on my tasks and needed a bit of time to clear my head up.
+I have created also loading-states for the items-list component. Essentially, while the data is being fetched the Skeletons will appear (which are also responsive). If you want to check them out first on line 27 of the items-list.container file just type (if(!loading)) and you can see them with a bit more detail :)
 
-I hope you enjoy :)
+In order to improve the user experience I thought it was best to add a scroll to top button, which is essentially an arrow pointing up (with a bit of transparency). It will appear once you scroll down by about 1500 px.
+
+The unit-testing for this was a bit tricky. I wasn't able to test its appearance and, according to what I've researched, it is because JSDOM doesn't allow the engineers to set the height.
+
+I hope you enjoy this as much as I liked doing this tech challenge!
+Kudos for you for having designed such a cool tech challenge ::)
+
 
 ## Available Scripts
 

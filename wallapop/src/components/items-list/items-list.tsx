@@ -1,11 +1,12 @@
 import React, { useState, useMemo } from "react";
 
 import { SearchBar } from "../search-bar";
-import { SortModal } from "../sort-modal";
+import { SortModal } from "./sort-modal";
 import { IoIosArrowUp, IoIosArrowDown } from 'react-icons/io';
 import { EmptyState } from "../empty-state";
 import { useFilteredAndSortedItems } from "../../hooks/useFilteredAndSortedItems";
 import { CATEGORIES, Categories } from "../../constants";
+import { ScrollToTopButton } from "../scroll-to-top-button";
 
 import { Container, SortButton, SortButtonText, SearchButtonWrapper, SearchButton } from "./styles";
 
@@ -41,6 +42,7 @@ export const ItemsList: React.FC<ItemsListProps> = ({ items }) => {
 
   return (
     <Container>
+      <ScrollToTopButton />
       <SearchBar searchCategory={searchCategory} setSearchResult={setSearchInput} />
       <SearchButtonWrapper>
         {memoizedSearchButtons}

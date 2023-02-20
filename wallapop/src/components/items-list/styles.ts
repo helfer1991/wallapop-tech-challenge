@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-type FilterButtonProps = {
+type SearchButtonProps = {
     isSelected?: boolean;
 }
 
@@ -51,7 +51,7 @@ export const SearchButtonWrapper = styled.span`
     margin-bottom: 24px;
 `;
 
-export const SearchButton = styled.button<FilterButtonProps>`
+export const SearchButton = styled.button<SearchButtonProps>`
     align-self: center;
     background-color: ${(props) => props.isSelected ? '#13c1ac' : '#fff' };
     box-shadow: 0 5px 8px #2532381a;

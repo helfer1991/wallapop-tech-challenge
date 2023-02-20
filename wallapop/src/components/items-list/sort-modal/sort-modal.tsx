@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { CATEGORIES } from '../../constants';
+import { CATEGORIES } from '../../../constants';
 
 import { Container, Wrapper, Title, CategoryButton} from './styles';
 

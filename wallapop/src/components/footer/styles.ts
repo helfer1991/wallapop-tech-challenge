@@ -40,9 +40,10 @@ export const TextWrapper = styled.span`
 `;
 
 export const Name = styled.h1`
-    font-size: 24px;
-    font-weight: 700;
     color: rgba(207,216,230);
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
 
     @media (min-width: 700px) {
         font-size: 32px;
@@ -52,10 +53,12 @@ export const Name = styled.h1`
 export const HeartFull = styled(AiFillHeart)`
     color: #FF4033;
     display: block;
-    height: 32px;
-    width: 32px;
+    height: 20px;
+    width: 20px;
 
     @media (min-width: 700px) {
+        height: 32px;
         padding-right: 24px;
+        width: 32px;
     }
 `;
