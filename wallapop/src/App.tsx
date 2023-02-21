@@ -4,7 +4,7 @@ import { Header } from './components/header/header';
 import { Footer } from './components/footer';
 import { Container} from './styles';
 
-function App() {
+export const App = () => {
   return (
     <Container>
       <Header />

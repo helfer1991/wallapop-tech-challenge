@@ -41,7 +41,7 @@ export const ItemsListManager: React.FC<ItemsListProps> = ({ items }) => {
   const sortedItems = useFilteredAndSortedItems(items, searchCategory, searchInput, filterCategory);
 
   return (
-    <Container>
+    <Container data-testid="items-list-manager" >
       <ScrollToTopButton />
       <SearchBar searchCategory={searchCategory} setSearchResult={setSearchInput} />
       <SearchButtonWrapper>

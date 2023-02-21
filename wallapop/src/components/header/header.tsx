@@ -7,7 +7,7 @@ export const Header: React.FC = () => {
     const [show, setShow] = useState<boolean>(false);
 
     return (
-        <Container>
+        <Container data-testid="header">
             <Logo alt="wallapop-logo" src="https://mir-s3-cdn-cf.behance.net/projects/404/a009a0150534249.Y3JvcCw4MDgsNjMyLDAsMA.png" loading="lazy" />
             <FavouritesButton onClick={() => setShow(!show)} type="button">Favourites</FavouritesButton>
             <Favourites show={show} onClose={() => setShow(false)} />

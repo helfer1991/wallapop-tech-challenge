@@ -48,7 +48,7 @@ export type FavouritesContextType = {
 
 export const FavouritesContext = createContext({} as FavouritesContextType);
 
-export function FavouritesContextProvider({ children }: FavouritesProviderProps) {
+export const FavouritesContextProvider = ({ children }: FavouritesProviderProps) => {
   const [state, dispatch] = useReducer(FavouritesReducer, initialState);
 
   const addToFavourites = (item: Item) => {
