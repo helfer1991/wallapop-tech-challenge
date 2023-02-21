@@ -23,7 +23,7 @@ export const Item: React.FC<ItemProps> = memo(({ item }) => {
 
     return (
         <Card data-testid={`${item.title}`}>
-            <Image src={item.image} alt="item-image" loading="lazy" />
+            <Image src={item.image} alt="item-image" />
             <TextWrapper>
                 <UpperWrapper>
                     <Title>{item.title}</Title>

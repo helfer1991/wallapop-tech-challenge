@@ -20,7 +20,7 @@ export const ItemModal: React.FC<ItemModalProps> = ({ item, }) => {
                 <Title>{item.title}</Title>
                 <RemoveFavouriteButton onClick={handleRemove} type="button">Remove :(</RemoveFavouriteButton>
             </LeftWrapper>
-            <Image src={item.image} loading="lazy" alt="favourite-item-image" />
+            <Image src={item.image} alt="favourite-item-image" />
         </Card>
     )
 }
